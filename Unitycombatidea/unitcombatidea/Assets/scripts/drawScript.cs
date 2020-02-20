@@ -45,8 +45,7 @@ public class drawScript : MonoBehaviour
 
     void Start()
     {
-        camera = GetComponent<Camera>();
-        
+        camera = GetComponent<Camera>();   
     }
 
     // Update is called once per frame
@@ -54,20 +53,18 @@ public class drawScript : MonoBehaviour
     {
         if (triggered)
         {
-            
 
-            
             lineStartPoint = GetMouseCameraPoint();
             triggered = false;
-        } 
-        else if(stay) 
+        }
+        else if (stay)
         {
             var lineEndPoint = GetMouseCameraPoint();
             var gameObject = new GameObject();
             var lineRenderer = gameObject.AddComponent<LineRenderer>();
             lineRenderer.material = lineMaterial;
-           // lineRenderer.positionCount = 2;
-            lineRenderer.SetPositions(new Vector3[]{lineStartPoint.Value, lineEndPoint});
+            // lineRenderer.positionCount = 2;
+            lineRenderer.SetPositions(new Vector3[] { lineStartPoint.Value, lineEndPoint });
             lineRenderer.startWidth = lineWidth;
             lineRenderer.endWidth = lineWidth;
             lineStartPoint = GetMouseCameraPoint();
@@ -79,22 +76,22 @@ public class drawScript : MonoBehaviour
                 return;
             }
             exit = false;
-            
+
             var lineEndPoint = GetMouseCameraPoint();
             var gameObject = new GameObject();
             var lineRenderer = gameObject.AddComponent<LineRenderer>();
             lineRenderer.material = lineMaterial;
-           // lineRenderer.positionCount = 2;
-            lineRenderer.SetPositions(new Vector3[]{lineStartPoint.Value, lineEndPoint});
+            // lineRenderer.positionCount = 2;
+            lineRenderer.SetPositions(new Vector3[] { lineStartPoint.Value, lineEndPoint });
             lineRenderer.startWidth = lineWidth;
             lineRenderer.endWidth = lineWidth;
-           
+
             lineStartPoint = null;
-    
+        }
 
     }
-     Vector3 GetMouseCameraPoint()
 
+     Vector3 GetMouseCameraPoint()
     {
        // int layerMask = 1 << 9;
         RaycastHit hit;
@@ -116,7 +113,7 @@ public class drawScript : MonoBehaviour
         //return ray.origin + ray.direction * depth;
         return pointHolder;
     }
-}}
+}
 
 // summation of problems: going forward not backwards, not "drawing"
 // it is drawing it's just getting increasing smaller AND the smaller it gets the more it heads to the bottom left corner of the canvas
