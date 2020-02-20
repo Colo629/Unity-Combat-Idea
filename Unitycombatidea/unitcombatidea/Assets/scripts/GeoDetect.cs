@@ -20,14 +20,14 @@ public class GeoDetect
     }
     public static float calcTheta(float x, float y)
     {
-        float theta = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
-        if (theta < 0) { theta = 360 - theta; }
+        float theta = 90 - (Mathf.Atan2(y, -x) * Mathf.Rad2Deg);
+        if (theta < 0) { theta = 360 + theta; }
         return theta;
     }
 
     public static bool inStartBounds(float theta)
     {
-        if (((upperVariance / 2) < theta) & (theta < (upperVariance / 2)))
+        if (theta < 10f | theta > 350f)
         {
             return true;
         }
