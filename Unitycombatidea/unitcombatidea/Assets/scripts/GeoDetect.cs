@@ -12,10 +12,26 @@ public class GeoDetect
     private static float pentUpper = 81f;
     private static float sqrUpper = 105f;
     private static float triUpper = 135f;
+    private static float upperVariance = 20f;
     
     public void shapeTracker()
     {
 
+    }
+    public static float calcTheta(float x, float y)
+    {
+        float theta = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+        if (theta < 0) { theta = 360 - theta; }
+        return theta;
+    }
+
+    public static bool inStartBounds(float theta)
+    {
+        if (((upperVariance / 2) < theta) & (theta < (upperVariance / 2)))
+        {
+            return true;
+        }
+        return false;
     }
 
     public static int GeometryCalc(float theta)
