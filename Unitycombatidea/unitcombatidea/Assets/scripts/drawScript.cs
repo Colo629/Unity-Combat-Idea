@@ -20,6 +20,8 @@ public class drawScript : MonoBehaviour
     public GameObject raycastVis;
     public LayerMask canvasLayer;
 
+    public AlchemyCircle alchCircle;
+
 
     void OnTriggerExit(Collider other)
     {
@@ -28,18 +30,24 @@ public class drawScript : MonoBehaviour
         stay = false;
         
         canvasCam = null;
+        alchCircle.StopDrawing(transform.position);
+        alchCircle = null;
     }
 
     void OnTriggerEnter(Collider other)
     {
         
-      canvas = other.gameObject;  
-      triggered = true;
-      canvasCam = canvas.GetComponent<CamInfo>().cam;
+        canvas = other.gameObject;  
+        triggered = true;
+        canvasCam = canvas.GetComponent<CamInfo>().cam;
+        alchCircle = other.GetComponent<AlchemyCircle>();
+        alchCircle.StartDrawing(transform.position);
+
     }
     void OnTriggerStay(Collider other)
     {
         stay = true;
+        alchCircle.Drawing(transform.position);
     }
     
 
