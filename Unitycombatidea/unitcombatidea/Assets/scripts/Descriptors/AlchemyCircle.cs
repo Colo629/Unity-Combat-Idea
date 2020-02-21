@@ -43,7 +43,6 @@ public class AlchemyCircle : MonoBehaviour
     /// <param name="penPos"></param>
     public void Drawing(Vector3 penPos)
     {
-
         // if at some point during this drawing set, it became invalid,
         // do not attempt to create a shape definition
         if (poisoned)
@@ -78,6 +77,7 @@ public class AlchemyCircle : MonoBehaviour
         // if it's too far, shut it down
         if (distance > outerCircleBound)
         {
+            Debug.Log("Too far: ");
             poisoned = true;
             return;
         }
