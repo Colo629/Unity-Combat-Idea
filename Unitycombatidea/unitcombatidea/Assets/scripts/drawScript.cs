@@ -20,6 +20,8 @@ public class drawScript : MonoBehaviour
     public GameObject raycastVis;
     public LayerMask canvasLayer;
 
+    private Vector3 recentPoint;
+
     public AlchemyCircle alchCircle;
 
 
@@ -105,17 +107,18 @@ public class drawScript : MonoBehaviour
         RaycastHit hit;
         //Physics.Raycast(raycastVis.transform.position, raycastVis.transform.up, out hit, Mathf.Infinity, ~layerMask);
         Physics.Raycast(raycastVis.transform.position, raycastVis.transform.up, out hit, Mathf.Infinity, canvasLayer.value ); // my testing
-        Debug.Log(hit.collider.gameObject.name);
+        //Debug.Log(hit.collider.gameObject.name);
         //Debug.Log(~layerMask);
-        Debug.Log(canvasLayer.value);
-        Debug.Log(hit.textureCoord);
+        //Debug.Log(canvasLayer.value);
+        //Debug.Log(hit.textureCoord);
         Vector3 visHolder = chalkVis.transform.InverseTransformPoint(hit.point); //no change needed afaik
         float floatScale = (0.02963647f / 2); //my testing showed lower value = less acceleration on pushback
         
         chalkVis.transform.position = chalkVis.transform.TransformPoint(new Vector3(0, visHolder.y - 0.5f, 0)); // determines how far chalk moves back +constantly? Also drawing point to bottom left hmm.
         Vector3 pointHolder = new Vector3(hit.textureCoord.x, hit.textureCoord.y, depth);
         pointHolder = canvasCam.transform.position + new Vector3(2 * (pointHolder[0]-0.5f),2 * (pointHolder[1]-0.5f),depth); //changes where the drawing occurs on the canvas
-        
+
+        recentPoint = pointHolder;
 
         //var ray = camera.ScreenPointToRay(Input.mousePosition);
         //return ray.origin + ray.direction * depth;

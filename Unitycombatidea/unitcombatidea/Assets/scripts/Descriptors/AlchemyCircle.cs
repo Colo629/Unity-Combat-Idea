@@ -12,7 +12,7 @@ public class AlchemyCircle : MonoBehaviour
 {
     public float circleSize = 1f;
     public float outerCircleBound = 0.5f;
-    public float innerCircleBound = 0.45f;
+    public float innerCircleBound = 0.41f;
     public bool[] simpleGeometryArray = new bool[10];  // defines array of floats for future serialization of circle geometry
     public Texture2D drawnTexture;
 
@@ -28,6 +28,8 @@ public class AlchemyCircle : MonoBehaviour
     private bool armedShape = false;
     private bool stagedShape = false;
 
+    private bool spaghettiSpecial = true;
+
     private AlchemyCircle(float _circleSize, float _outerCircleBound, float _innerCircleBound)
     {
         circleSize = _circleSize;
@@ -41,11 +43,11 @@ public class AlchemyCircle : MonoBehaviour
     /// <param name="penPos"></param>
     public void Drawing(Vector3 penPos)
     {
-
         // if at some point during this drawing set, it became invalid,
         // do not attempt to create a shape definition
         if (poisoned)
         {
+            targetSides = -2;
             return;
         }
 
@@ -55,11 +57,16 @@ public class AlchemyCircle : MonoBehaviour
         float theta = GeoDetect.calcTheta(localPos.x, localPos.y);
         float distance = localPos.magnitude;
 
+        Debug.Log("Theta: " + theta);
+
         // if you don't start at the start, you're dead kiddo
         if (drawing == false)
         {
+            Debug.Log("Start Theta: " + theta);
+            Debug.Log("Start Distance: " + distance);
             if (!GeoDetect.inStartBounds(theta))
             {
+                Debug.Log("NOt In bounds!");
                 poisoned = true;
                 return;
             }
@@ -70,6 +77,7 @@ public class AlchemyCircle : MonoBehaviour
         // if it's too far, shut it down
         if (distance > outerCircleBound)
         {
+            Debug.Log("Too far: ");
             poisoned = true;
             return;
         }
@@ -81,6 +89,9 @@ public class AlchemyCircle : MonoBehaviour
             if (!inBounds)
             {
                 thetaIn = theta;
+                inBounds = true;
+
+                Debug.Log("Theta In");
 
                 // if we're almost done with the shape, and we've
                 // entered a boundary zone
@@ -111,7 +122,17 @@ public class AlchemyCircle : MonoBehaviour
             if (inBounds)
             {
                 thetaOut = theta;
-                CornerEvent();
+                inBounds = false;
+                if (spaghettiSpecial)
+                {
+                    Debug.Log("spaghetti: " + theta);
+                    spaghettiSpecial = false;
+                }
+                else
+                {
+                    Debug.Log("not spaghetti: " + theta);
+                    CornerEvent();
+                }
             }
         }
     }
@@ -135,6 +156,7 @@ public class AlchemyCircle : MonoBehaviour
         // we 'add' the shape to the bool array (tri = [3])
         if (!poisoned)
         {
+            Debug.Log("Shape has this many sides: " + targetSides);
             simpleGeometryArray[targetSides] = true;
         }
         stagedShape = false;
@@ -148,6 +170,8 @@ public class AlchemyCircle : MonoBehaviour
 
     private void CornerEvent()
     {
+        
+
         // how much do we shift the shape zones by?
         if (targetSides > 0)
         {
@@ -156,6 +180,10 @@ public class AlchemyCircle : MonoBehaviour
         
         int inSideCount = GeoDetect.GeometryCalc(thetaIn - offset);
         int outSideCount = GeoDetect.GeometryCalc(thetaOut - offset);
+
+        Debug.Log("Corner Event: " + drawnVertices);
+        Debug.Log("Shape sided-ness: " + inSideCount + ' ' + outSideCount);
+        Debug.Log("Offset: " + offset);
 
         // if both entrance and exit of hitbound are the same shape boundary
         if (inSideCount == outSideCount)
@@ -193,6 +221,13 @@ public class AlchemyCircle : MonoBehaviour
             {
                 stagedShape = true;
             }
+        }
+
+        else
+        {
+            Debug.Log("Fisherman's fuckup");
+            poisoned = true;
+            return;
         }
 
 
