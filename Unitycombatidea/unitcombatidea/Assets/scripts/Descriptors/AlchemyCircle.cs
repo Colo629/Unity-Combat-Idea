@@ -11,8 +11,8 @@ using UnityEngine;
 public class AlchemyCircle : MonoBehaviour
 {
     public float circleSize = 1f;
-    public float outerCircleBound = 0.5f;
-    public float innerCircleBound = 0.41f;
+    public float outerCircleBound = 0.44f;
+    public float innerCircleBound = 0.35f;
     public bool[] simpleGeometryArray = new bool[10];  // defines array of floats for future serialization of circle geometry
     public Texture2D drawnTexture;
 
@@ -48,6 +48,7 @@ public class AlchemyCircle : MonoBehaviour
         if (poisoned)
         {
             targetSides = -2;
+            Debug.Log("posioned drawingpenPos");
             return;
         }
 
@@ -105,12 +106,15 @@ public class AlchemyCircle : MonoBehaviour
                     if (GeoDetect.inStartBounds(theta))
                     {
                         stagedShape = true;
+                        Debug.Log("ended in start bounds");
                     }
 
                     // if you end the shape anywhere but the start... 
                     else
                     {
+                        Debug.Log("Ended outside start");
                         poisoned = true;
+                        
                     }
                 }
             }
@@ -194,6 +198,7 @@ public class AlchemyCircle : MonoBehaviour
             {
                 poisoned = true;
                 targetSides = 0;
+                Debug.Log("inSidecount is zero so target sides set to 0");
                 return;
             }
 
