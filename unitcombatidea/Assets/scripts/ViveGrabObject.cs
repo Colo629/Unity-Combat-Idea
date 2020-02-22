@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class ViveGrabObject : MonoBehaviour
 {
+
+    public SteamVR_Action_Boolean grabObject;
+    
     public bool debugHold;
     public GameObject holdPosition;
     private SteamVR_TrackedObject trackedObj;
+
+    /*
     private SteamVR_Controller.Device Controller
     {
         get
@@ -14,7 +20,8 @@ public class ViveGrabObject : MonoBehaviour
             return SteamVR_Controller.Input((int)trackedObj.index);
         }
     
-    }
+    }*/
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +41,7 @@ public class ViveGrabObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Grip)|debugHold) // Push grip buttons and touching object,
+        if (grabObject.GetStateDown(SteamVR_Input_Sources.Any)|debugHold) // Push grip buttons and touching object,
         {
             if (collidingObject)
             {
@@ -42,7 +49,7 @@ public class ViveGrabObject : MonoBehaviour
                 GrabObject();
             }
         }
-        if (Controller.GetPressUp (SteamVR_Controller.ButtonMask.Grip)) // if release grip bottons and holding object
+        if (grabObject.GetStateUp(SteamVR_Input_Sources.Any)) // if release grip bottons and holding object
         {
             if (objectInHand)
             {
