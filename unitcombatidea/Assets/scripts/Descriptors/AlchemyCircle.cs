@@ -136,6 +136,8 @@ public class AlchemyCircle : MonoBehaviour
                 {
                     Debug.Log("not spaghetti: " + theta);
                     CornerEvent();
+                    thetaIn = 0f;
+                    thetaOut = 0f;
                 }
             }
         }
@@ -196,8 +198,7 @@ public class AlchemyCircle : MonoBehaviour
         int outSideCount = GeoDetect.GeometryCalc(thetaOut - offset);
 
         Debug.Log("Corner Event: " + drawnVertices);
-        Debug.Log("Shape sided-ness: " + inSideCount + ' ' + outSideCount);
-        Debug.Log("Offset: " + offset);
+        Debug.Log("Shape sided-ness: " + inSideCount + ' ' + outSideCount + ' ' + offset);
 
         // if both entrance and exit of hitbound are the same shape boundary
         if (inSideCount == outSideCount)
@@ -234,6 +235,7 @@ public class AlchemyCircle : MonoBehaviour
             // (barring screw-ups later on)
             if (drawnVertices + 1 == targetSides)
             {
+                Debug.Log("Armed!");
                 stagedShape = true;
             }
         }
