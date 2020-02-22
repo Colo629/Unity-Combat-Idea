@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
    // [RequireComponent(typeof(Camera))]
 public class drawScript : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class drawScript : MonoBehaviour
     public GameObject chalkVis;
     public GameObject raycastVis;
     public LayerMask canvasLayer;
+    public SteamVR_Action_Vibration draw;
 
     private Vector3 recentPoint;
 
@@ -27,13 +29,15 @@ public class drawScript : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        chalkVis.transform.position = chalkVis.transform.TransformPoint(new Vector3());
+        chalkVis.transform.position = transform.parent.position;
         exit = true;
         stay = false;
         
         canvasCam = null;
         alchCircle.StopDrawing(transform.position);
         alchCircle = null;
+
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -61,9 +65,13 @@ public class drawScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!stay)
+        {
+            chalkVis.transform.position = transform.parent.position;
+        }
         if (triggered)
         {
-
+            
             lineStartPoint = GetMouseCameraPoint();
             triggered = false;
         }
@@ -113,8 +121,11 @@ public class drawScript : MonoBehaviour
         //Debug.Log(hit.textureCoord);
         Vector3 visHolder = chalkVis.transform.InverseTransformPoint(hit.point); //no change needed afaik
         float floatScale = (0.02963647f / 2); //my testing showed lower value = less acceleration on pushback
-        
-        chalkVis.transform.position = chalkVis.transform.TransformPoint(new Vector3(0, visHolder.y - 0.5f, 0)); // determines how far chalk moves back +constantly? Also drawing point to bottom left hmm.
+
+        float chalkSlide = Mathf.Clamp(-2, (visHolder.y - 1f), 0);
+
+
+        chalkVis.transform.position = chalkVis.transform.TransformPoint(new Vector3(0, chalkSlide, 0)); // determines how far chalk moves back +constantly? Also drawing point to bottom left hmm.
         Vector3 pointHolder = new Vector3(hit.textureCoord.x, hit.textureCoord.y, depth);
         pointHolder = canvasCam.transform.position + new Vector3(2 * (pointHolder[0]-0.5f),2 * (pointHolder[1]-0.5f),depth); //changes where the drawing occurs on the canvas
 

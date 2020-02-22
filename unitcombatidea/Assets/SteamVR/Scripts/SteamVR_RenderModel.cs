@@ -18,6 +18,8 @@ namespace Valve.VR
         public SteamVR_TrackedObject.EIndex index = SteamVR_TrackedObject.EIndex.None;
         protected SteamVR_Input_Sources inputSource;
 
+        public Material test_lol;
+
         public const string modelOverrideWarning = "Model override is really only meant to be used in " +
             "the scene view for lining things up; using it at runtime is discouraged.  Use tracked device " +
             "index instead to ensure the correct model is displayed for all users.";
@@ -453,7 +455,16 @@ namespace Valve.VR
                     }
 
                     material = new Material(shader != null ? shader : Shader.Find("Standard"));
+
+                    
+                    
+                    
                     material.mainTexture = texture;
+
+                    //WRPP ADDED __REMOVE IF NECCESARY__
+                    //material.color = new Color(0f, 0f, 0f, 0.5f);
+
+
                     //material.hideFlags = HideFlags.DontUnloadUnusedAsset;
 
                     materials[renderModel.diffuseTextureId] = material;
