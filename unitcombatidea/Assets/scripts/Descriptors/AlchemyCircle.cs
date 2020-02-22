@@ -191,7 +191,8 @@ public class AlchemyCircle : MonoBehaviour
         // how much do we shift the shape zones by?
         if (targetSides > 0)
         {
-            offset = (drawnVertices - 1) * (360 / targetSides);
+            offset = (drawnVertices) * (360 / targetSides);
+            Debug.Log("__Prepared Offset: " + offset);
         }
         
         int inSideCount = GeoDetect.GeometryCalc(thetaIn - offset);
