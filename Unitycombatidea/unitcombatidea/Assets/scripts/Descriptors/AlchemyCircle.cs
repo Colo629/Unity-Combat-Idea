@@ -147,6 +147,15 @@ public class AlchemyCircle : MonoBehaviour
     /// <param name="penPos"></param>
     public void StartDrawing(Vector3 penPos)
     {
+        spaghettiSpecial = true;
+        offset = 0;
+        stagedShape = false;
+        poisoned = false;
+        targetSides = -1;
+        drawing = false;
+        drawnVertices = 0;
+        thetaIn = -1f;
+        thetaOut = -1f;
         Drawing(penPos);
     }
 
@@ -170,6 +179,7 @@ public class AlchemyCircle : MonoBehaviour
         drawnVertices = 0;
         thetaIn = -1f;
         thetaOut = -1f;
+        offset = 0f;
     }
 
     private void CornerEvent()
