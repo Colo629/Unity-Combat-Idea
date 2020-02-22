@@ -8,6 +8,7 @@
 */[Bb]uild/
 */[Bb]uilds/
 */[Ll]ogs/
+*.log
 */[Uu]ser[Ss]ettings/
 */[Tt]emp/
 /Unitycombatidea/unitcombatidea/[Ll]ibrary/
