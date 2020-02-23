@@ -6,7 +6,12 @@ using UnityEngine;
 
 public class circleActivation : MonoBehaviour
 {   
+    public bool firstCollision = false;
+    public Collider leftController;
+    public Collider rightController;
     public GameObject sword;
+    public GameObject spear;
+    public GameObject wall;
     private AlchemyCircle alchCircle;
     public Renderer chalkGlow;
     private Material chalkMaterial;
@@ -23,7 +28,7 @@ public class circleActivation : MonoBehaviour
         //lightning.Stop();
         chalkMaterial = chalkGlow.material;
     }
-     void OnTriggerEnter(Collider other)
+     void OnTriggerEnter(Collider other) 
      {
         bool shapeFlag = false;
         Debug.Log ("is colliding");
@@ -43,6 +48,12 @@ public class circleActivation : MonoBehaviour
         {
             return;
         }
+          if(firstCollision == false)
+         {
+             firstCollision = true;
+             return;
+         }
+     
          else 
          {
             activateCircle = true;
