@@ -7,8 +7,9 @@ using UnityEngine;
 public class circleActivation : MonoBehaviour
 {   
     public bool firstCollision = false;
-    public Collider leftController;
-    public Collider rightController;
+    public bool gestureSword = false;
+    public bool gestureSpear = false;
+    public bool gestureWall = false;
     public GameObject sword;
     public GameObject spear;
     public GameObject wall;
@@ -75,11 +76,29 @@ public class circleActivation : MonoBehaviour
             hdr = true;
         if (!firstActivation == true)
         {
+            if(gestureSword ==true)
+            {
+
+            
             Vector3 swordPos = transform.TransformPoint(new Vector3(0f, 0f, -20f));
             GameObject swordGameObject = Instantiate(sword, swordPos, transform.rotation);  
             swordGameObject.transform.rotation = transform.rotation; 
             Debug.Log("summon sword");
             firstActivation = true;
+            }
+        
+        
+            if(gestureSpear == true)
+            {
+
+            
+            Vector3 spearPos = transform.TransformPoint(new Vector3(0,0,-30f));
+            GameObject spearGameObject = Instantiate(spear, spearPos, transform.rotation);
+            spearGameObject.transform.rotation = transform.rotation;
+            Debug.Log("summon spear");
+            firstActivation = true;
+            }
+            return;
         }
                         
         
