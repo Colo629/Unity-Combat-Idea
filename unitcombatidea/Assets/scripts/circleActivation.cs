@@ -98,6 +98,16 @@ public class circleActivation : MonoBehaviour
             Debug.Log("summon spear");
             firstActivation = true;
             }
+            
+            if(gestureWall ==true)
+            {
+                Vector3 wallPos = transform.TransformPoint(new Vector3(0,0,-40f));
+                GameObject wallGameObject = Instantiate(wall, wallPos, transform.rotation);
+                wallGameObject.transform.rotation = transform.rotation;
+                Debug.Log("summon wall");
+                firstActivation = true;
+            }
+            
             return;
         }
                         
