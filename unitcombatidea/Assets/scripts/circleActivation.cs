@@ -6,24 +6,40 @@ using UnityEngine;
 
 public class circleActivation : MonoBehaviour
 {   
+    public GameObject sword;
+    private AlchemyCircle alchCircle;
     public Renderer chalkGlow;
     private Material chalkMaterial;
     public bool hdr;
     //public ParticleSystem lightning;
-    //public SteamVR_Controller.Device Controller;
     public bool fingerGesture = false;
    // public GameObject collidingCircle;
     public bool activateCircle;
+    public bool firstActivation = false;
     // Start is called before the first frame update
     void Start()
     {
+        alchCircle = gameObject.GetComponent<AlchemyCircle>();
         //lightning.Stop();
         chalkMaterial = chalkGlow.material;
     }
      void OnTriggerEnter(Collider other)
      {
-         Debug.Log ("is colliding");
+        bool shapeFlag = false;
+        Debug.Log ("is colliding");
+         
+         foreach(bool shape in alchCircle.simpleGeometryArray)
+         {
+            if (shape)
+            {
+                shapeFlag = true;
+            }
+         }
         if (fingerGesture == false) 
+        {
+            return;
+        }
+        if (shapeFlag == false)
         {
             return;
         }
@@ -31,6 +47,7 @@ public class circleActivation : MonoBehaviour
          {
             activateCircle = true;
          }
+         
      }
 
     // Update is called once per frame
@@ -42,9 +59,20 @@ public class circleActivation : MonoBehaviour
         {
             return;
         }
-         hdr = true;
-            chalkMaterial.SetColor("_EmissionColor", new Color(0.7393772f,2.103988f,2.488063f,1f) );
-            Debug.Log("activate circle");
+        chalkMaterial.SetColor("_EmissionColor", new Color(0.7393772f,2.103988f,2.488063f,1f) );
+            Debug.Log("circle activation");
+            hdr = true;
+        if (!firstActivation == true)
+        {
+            Vector3 swordPos = transform.TransformPoint(new Vector3(0f, 0f, -20f));
+            GameObject swordGameObject = Instantiate(sword, swordPos, transform.rotation);  
+            swordGameObject.transform.rotation = transform.rotation; 
+            Debug.Log("summon sword");
+            firstActivation = true;
+        }
+                        
+        
+            
             
        // if (!lightning.isPlaying)
 //{
