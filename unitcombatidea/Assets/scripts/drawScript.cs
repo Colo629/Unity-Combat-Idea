@@ -36,7 +36,6 @@ public class drawScript : MonoBehaviour
         canvasCam = null;
         alchCircle.StopDrawing(transform.position);
         alchCircle = null;
-
         
     }
 

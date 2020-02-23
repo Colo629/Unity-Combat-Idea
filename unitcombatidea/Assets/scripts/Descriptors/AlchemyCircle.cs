@@ -195,8 +195,8 @@ public class AlchemyCircle : MonoBehaviour
             Debug.Log("__Prepared Offset: " + offset);
         }
         
-        int inSideCount = GeoDetect.GeometryCalc(thetaIn - offset);
-        int outSideCount = GeoDetect.GeometryCalc(thetaOut - offset);
+        int inSideCount = GeoDetect.ShapeCalc(thetaIn - offset);
+        int outSideCount = GeoDetect.ShapeCalc(thetaOut - offset);
 
         Debug.Log("Corner Event: " + drawnVertices);
         Debug.Log("Shape sided-ness: " + inSideCount + ' ' + outSideCount + ' ' + offset);

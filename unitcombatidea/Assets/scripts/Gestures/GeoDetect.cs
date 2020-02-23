@@ -25,6 +25,13 @@ public class GeoDetect
         return theta;
     }
 
+    public static float calcPadTheta(float x, float y)
+    {
+        float theta = 90 - (Mathf.Atan2(y, x) * Mathf.Rad2Deg);
+        if (theta < 0) { theta = 360 + theta; }
+        return theta;
+    }
+
     public static bool inStartBounds(float theta)
     {
         if (theta < 10f | theta > 350f)
@@ -34,9 +41,24 @@ public class GeoDetect
         return false;
     }
 
-    public static int GeometryCalc(float theta)
+    public static int hexalPadCalc(float theta)
     {
-        if (theta < minBound){
+        theta = theta - 22.5f;
+
+        for (int i = 0; i <= 7; i++)
+        {
+            if (theta < (45 * i))
+            {
+                return i;
+            }
+        }
+        return 7;
+    }
+
+    public static int ShapeCalc(float theta)
+    {
+        if (theta < minBound)
+        {
             return 0;
         }
         else if (theta < octUpper)

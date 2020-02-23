@@ -281,12 +281,62 @@ PrefabInstance:
     - target: {fileID: 2839802943221356924, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.08
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839802943221356924, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.8711281
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839802943221356924, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4910558
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839802943221356924, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839802943221356924, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 121.18
       objectReference: {fileID: 0}
     - target: {fileID: 2839802943371586171, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.08
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839802943371586171, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.8711281
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839802943371586171, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839802943371586171, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839802943371586171, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4910558
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839802943371586171, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839802943371586171, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 121.18
       objectReference: {fileID: 0}
     - target: {fileID: 2839802943576268299, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
         type: 3}
@@ -297,7 +347,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1487236245}
+      objectReference: {fileID: 652682747}
     - target: {fileID: 4457212455688069997, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
         type: 3}
       propertyPath: shader
@@ -322,7 +372,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1597991091}
+      objectReference: {fileID: 2089411162}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63bc45a00e36cbd41bf59382b4b9a8ef, type: 3}
 --- !u!1001 &593211411
@@ -386,52 +436,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a5a21022e8f09d24da480df559959562, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 760ada1ba317e9945b4c6fa8b2eee008, type: 3}
---- !u!1 &1343336227 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5152406941884517099, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 96114545}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1343336231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343336227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweakMode: 0
-  screenBlendMode: 1
-  hdr: 1
-  sepBlurSpread: 2.5
-  quality: 1
-  bloomIntensity: 0.5
-  bloomThreshold: 0.5
-  bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
-  bloomBlurIterations: 2
-  hollywoodFlareBlurIterations: 2
-  flareRotation: 0
-  lensflareMode: 1
-  hollyStretchWidth: 2.5
-  lensflareIntensity: 0
-  lensflareThreshold: 0.3
-  lensFlareSaturation: 0.75
-  flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
-  flareColorB: {r: 0.4, g: 0.8, b: 0.8, a: 0.75}
-  flareColorC: {r: 0.8, g: 0.4, b: 0.8, a: 0.75}
-  flareColorD: {r: 0.8, g: 0.4, b: 0, a: 0.75}
-  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
-    type: 3}
-  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
-  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
-  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
-  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
-    type: 3}
---- !u!43 &1487236245
+--- !u!43 &652682747
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -591,6 +596,51 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1343336227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5152406941884517099, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 96114545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1343336231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343336227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweakMode: 0
+  screenBlendMode: 1
+  hdr: 1
+  sepBlurSpread: 2.5
+  quality: 1
+  bloomIntensity: 0.5
+  bloomThreshold: 0.5
+  bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
+  bloomBlurIterations: 2
+  hollywoodFlareBlurIterations: 2
+  flareRotation: 0
+  lensflareMode: 1
+  hollyStretchWidth: 2.5
+  lensflareIntensity: 0
+  lensflareThreshold: 0.3
+  lensFlareSaturation: 0.75
+  flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
+  flareColorB: {r: 0.4, g: 0.8, b: 0.8, a: 0.75}
+  flareColorC: {r: 0.8, g: 0.4, b: 0.8, a: 0.75}
+  flareColorD: {r: 0.8, g: 0.4, b: 0, a: 0.75}
+  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
+    type: 3}
+  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
+  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
+  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
+  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
+    type: 3}
 --- !u!1001 &1570184100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -680,40 +730,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cad5bf47d6335b429e4cb1aabad5250, type: 3}
---- !u!21 &1597991091
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1704142505
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,3 +799,64 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1804531475 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5771508064869254025, guid: 63bc45a00e36cbd41bf59382b4b9a8ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 96114545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1804531480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804531475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04e5e796ebdb3f4882b605d69bd8bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radialSelector:
+    actionPath: /actions/default/in/controlSymbolSelect
+    needsReinit: 0
+  padClickLeft:
+    actionPath: /actions/default/in/controlSymbolClick
+    needsReinit: 0
+  padClickRight:
+    actionPath: /actions/default/in/controlSymbolClick
+    needsReinit: 0
+--- !u!21 &2089411162
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
