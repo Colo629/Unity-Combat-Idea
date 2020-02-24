@@ -182,6 +182,7 @@ public class AlchemyCircle : MonoBehaviour
         thetaIn = -1f;
         thetaOut = -1f;
         offset = 0f;
+
     }
 
     private void CornerEvent()
