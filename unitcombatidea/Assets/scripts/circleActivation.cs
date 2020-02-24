@@ -5,23 +5,31 @@ using UnityEngine;
 
 
 public class circleActivation : MonoBehaviour
-{   
+{   private float currentTime = 0;
+    public bool timeActivate = false;
     public bool firstCollision = false;
     public bool gestureSword = false;
     public bool gestureSpear = false;
     public bool gestureWall = false;
+    public bool gestureSwordAttack = false;
+    public bool gestureGroundSpikes = false;
+    public bool gestureSpearAttack = false;
     public GameObject sword;
     public GameObject spear;
     public GameObject wall;
+    public GameObject swordAttack;
+    public GameObject groundSpikes;
+    public GameObject spearAttack;
     private AlchemyCircle alchCircle;
     public Renderer chalkGlow;
     private Material chalkMaterial;
     public bool hdr;
-    //public ParticleSystem lightning;
+    public ParticleSystem lightning;
     public bool fingerGesture = false;
    // public GameObject collidingCircle;
     public bool activateCircle;
     public bool firstActivation = false;
+    float timer = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,16 +79,14 @@ public class circleActivation : MonoBehaviour
         {
             return;
         }
-        chalkMaterial.SetColor("_EmissionColor", new Color(0.7393772f,2.103988f,2.488063f,1f) );
-            Debug.Log("circle activation");
-            hdr = true;
+                
         if (!firstActivation == true)
         {
             if(gestureSword ==true)
             {
 
             
-            Vector3 swordPos = transform.TransformPoint(new Vector3(0f, 0f, -20f));
+            Vector3 swordPos = transform.TransformPoint(new Vector3(0f, 0f, -0.5f/35));
             GameObject swordGameObject = Instantiate(sword, swordPos, transform.rotation);  
             swordGameObject.transform.rotation = transform.rotation; 
             Debug.Log("summon sword");
@@ -92,7 +98,7 @@ public class circleActivation : MonoBehaviour
             {
 
             
-            Vector3 spearPos = transform.TransformPoint(new Vector3(0,0,-30f));
+            Vector3 spearPos = transform.TransformPoint(new Vector3(0,0,-0.70f/35));
             GameObject spearGameObject = Instantiate(spear, spearPos, transform.rotation);
             spearGameObject.transform.rotation = transform.rotation;
             Debug.Log("summon spear");
@@ -101,28 +107,58 @@ public class circleActivation : MonoBehaviour
             
             if(gestureWall ==true)
             {
-                Vector3 wallPos = transform.TransformPoint(new Vector3(0,0,-40f));
+                Vector3 wallPos = transform.TransformPoint(new Vector3(0,0,-0.85f/35f));
                 GameObject wallGameObject = Instantiate(wall, wallPos, transform.rotation);
                 wallGameObject.transform.rotation = transform.rotation;
                 Debug.Log("summon wall");
                 firstActivation = true;
             }
-            
-            return;
+            if(gestureSwordAttack == true)
+            {
+            Vector3 swordAttackPos = transform.TransformPoint(new Vector3(0,0,-0.70f/35));
+            GameObject swordAttackGameObject = Instantiate(swordAttack, swordAttackPos, transform.rotation);
+            swordAttackGameObject.transform.rotation = transform.rotation;
+            Debug.Log("summon sword attack");
+            firstActivation = true;
+            }
+            if(gestureSpearAttack == true)
+            {
+            Vector3 spearAttackPos = transform.TransformPoint(new Vector3(0,0,-0.70f/35));
+            GameObject spearAttackGameObject = Instantiate(spearAttack, spearAttackPos, transform.rotation);
+            spearAttackGameObject.transform.rotation = transform.rotation;
+            Debug.Log("summon sword attack");
+            firstActivation = true;
+            }
+            if(gestureGroundSpikes ==true)
+            {
+                Vector3 groundSpikesPos = transform.TransformPoint(new Vector3(0,0,-0.85f/35f));
+                GameObject groundSpikesGameObject = Instantiate(groundSpikes, groundSpikesPos, transform.rotation);
+                groundSpikesGameObject.transform.rotation = transform.rotation;
+                Debug.Log("summon ground spikes");
+                firstActivation = true;
+            }
         }
-                        
-        
-            
-            
-       // if (!lightning.isPlaying)
-//{
-           // lightning.Play();
-            //hdr = true;
-            //chalkMaterial.SetColor("_EmissionColor", new Color(1,1,1,2) );
-            
-
-        //} 
-       
+       if(!timeActivate == true)
+            {
+               currentTime = Time.time;
+               timeActivate = true;
+            }
+            if(Time.time - currentTime <= 5)
+            {
+                
+                 chalkMaterial.SetColor("_EmissionColor", new Color(0.7393772f,2.103988f,2.488063f,1f));
+                 Debug.Log("circle activation");
+                 hdr = true;
+                 lightning.Play();
+                
+            }
+            else
+            {
+                lightning.Stop();
+                chalkMaterial.SetColor("_EmissionColor", new Color(0,0,0,0));
+                hdr = false;
+            }       
+            return;
         
     }
 }

@@ -14,7 +14,7 @@ public class TouchGestures : MonoBehaviour
 
     public Transform leftHand;
     public Transform rightHand;
-
+// 00: wall, 04: spear, 61: sword, 60: sword attack, 54: ground spikes, 40: spear attack
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class TouchGestures : MonoBehaviour
 
     void Update()
     {
-        
+        GestureLoop();
     }
 
 
@@ -46,12 +46,12 @@ public class TouchGestures : MonoBehaviour
         Vector2 rightPad = radialSelector.GetAxis(SteamVR_Input_Sources.RightHand);
         Vector2 leftPad = radialSelector.GetAxis(SteamVR_Input_Sources.LeftHand);
 
-        if (padClickLeft.GetStateDown(SteamVR_Input_Sources.LeftHand))
+        if (padClickLeft.GetStateDown(SteamVR_Input_Sources.Any))
         {
             Debug.Log(GeoDetect.hexalPadCalc(GeoDetect.calcPadTheta(leftPad.x, leftPad.y)));
         }
 
-        if (padClickRight.GetStateDown(SteamVR_Input_Sources.RightHand))
+        if (padClickRight.GetStateDown(SteamVR_Input_Sources.Any))
         {
             Debug.Log(GeoDetect.hexalPadCalc(GeoDetect.calcPadTheta(rightPad.x, rightPad.y)));
         }

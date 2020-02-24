@@ -31,18 +31,20 @@ public class circleTeleport : MonoBehaviour
         
         if(shapeFlag == false)
         {
-            Destroy(gameObject);
+            Destroy(raycastTele);
         }
     }
     void OnTriggerEnter(Collider other)
     {
        Vector3 telePos = transform.TransformPoint(new Vector3(0f, 0f, 0)); 
        RaycastHit hit;
-       if(Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+       Debug.Log(other.transform.gameObject.name + "collider");
+       if(Physics.Raycast(transform.position, transform.up, out hit, Mathf.Infinity))
        {    
             Quaternion slopeRotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
-            GameObject canvasClone = Instantiate(raycastTele, telePos, Quaternion.identity);
+            GameObject canvasClone = Instantiate(raycastTele, hit.point, Quaternion.identity);
             canvasClone.transform.rotation = canvasClone.transform.rotation * slopeRotation;
+            canvasClone.transform.position = canvasClone.transform.TransformPoint(new Vector3(0,0, 0.01f / 35));
            
            Debug.Log(hit.transform.gameObject.name);
            Debug.Log(hit.normal);
