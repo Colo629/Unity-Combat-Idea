@@ -34,7 +34,7 @@ public class drawScript : MonoBehaviour
         exit = true;
         stay = false;
         
-        canvasCam = null;
+       // canvasCam = null;
         alchCircle.StopDrawing(transform.position);
         alchCircle = null;
         
@@ -42,7 +42,7 @@ public class drawScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        
+        Debug.Log(other.transform.gameObject.name + " draw");
         canvas = other.gameObject;  
         triggered = true;
         canvasCam = canvas.GetComponent<CamInfo>().cam;
