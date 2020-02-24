@@ -21,6 +21,7 @@ public class drawScript : MonoBehaviour
     public GameObject raycastVis;
     public LayerMask canvasLayer;
     public SteamVR_Action_Vibration draw;
+    public SteamVR_Action_Boolean triggerDraw;
 
     private Vector3 recentPoint;
 
@@ -64,6 +65,10 @@ public class drawScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*if(!triggerDraw.GetState(SteamVR_Input_Sources.Any))
+        {
+            return;
+        }*/
         if (!stay)
         {
             chalkVis.transform.position = transform.parent.position;
