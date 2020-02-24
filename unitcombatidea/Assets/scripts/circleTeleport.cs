@@ -36,11 +36,16 @@ public class circleTeleport : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-       Vector3 telePos = transform.TransformPoint(new Vector3(0f, 0f, 3)); 
+       Vector3 telePos = transform.TransformPoint(new Vector3(0f, 0f, 0)); 
        RaycastHit hit;
-       if(Physics.Raycast(raycastTele.transform.position, raycastTele.transform.up, out hit, Mathf.Infinity))
-       {
-            Instantiate(raycastTele, telePos, Quaternion.Euler(-90,180,0));
+       if(Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+       {    
+            Quaternion slopeRotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
+            GameObject canvasClone = Instantiate(raycastTele, telePos, Quaternion.identity);
+            canvasClone.transform.rotation = canvasClone.transform.rotation * slopeRotation;
+           
+           Debug.Log(hit.transform.gameObject.name);
+           Debug.Log(hit.normal);
             Debug.Log("summoned object");
         }
     }
