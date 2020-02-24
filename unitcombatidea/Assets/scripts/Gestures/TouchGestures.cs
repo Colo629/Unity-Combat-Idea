@@ -32,6 +32,7 @@ public class TouchGestures : MonoBehaviour
         if ((leftHand.position - rightHand.position).sqrMagnitude < sqrThreshold)
         {
             return true;
+            
         }
         else
         {
