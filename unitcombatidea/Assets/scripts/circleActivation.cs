@@ -29,6 +29,7 @@ public class circleActivation : MonoBehaviour
    // public GameObject collidingCircle;
     public bool activateCircle;
     public bool firstActivation = false;
+    public GameObject spawnedObject;
     float timer = 0f;
     // Start is called before the first frame update
     void Start()
@@ -86,7 +87,7 @@ public class circleActivation : MonoBehaviour
             {
 
             
-            Vector3 swordPos = transform.TransformPoint(new Vector3(0f, 0f, -0.5f/35));
+            Vector3 swordPos = transform.TransformPoint(new Vector3(0f, 0f, -0.5f/14.5f));
             GameObject swordGameObject = Instantiate(sword, swordPos, transform.rotation);  
             swordGameObject.transform.rotation = transform.rotation; 
             Debug.Log("summon sword");
@@ -98,7 +99,7 @@ public class circleActivation : MonoBehaviour
             {
 
             
-            Vector3 spearPos = transform.TransformPoint(new Vector3(0,0,-0.70f/35));
+            Vector3 spearPos = transform.TransformPoint(new Vector3(0,0,-0.70f/14.5f));
             GameObject spearGameObject = Instantiate(spear, spearPos, transform.rotation);
             spearGameObject.transform.rotation = transform.rotation;
             Debug.Log("summon spear");
@@ -107,7 +108,7 @@ public class circleActivation : MonoBehaviour
             
             if(gestureWall ==true)
             {
-                Vector3 wallPos = transform.TransformPoint(new Vector3(0,0,-0.85f/35f));
+                Vector3 wallPos = transform.TransformPoint(new Vector3(0,0,-0.85f/14.5f));
                 GameObject wallGameObject = Instantiate(wall, wallPos, transform.rotation);
                 wallGameObject.transform.rotation = transform.rotation;
                 Debug.Log("summon wall");
@@ -115,7 +116,7 @@ public class circleActivation : MonoBehaviour
             }
             if(gestureSwordAttack == true)
             {
-            Vector3 swordAttackPos = transform.TransformPoint(new Vector3(0,0,-0.70f/35));
+            Vector3 swordAttackPos = transform.TransformPoint(new Vector3(0,0,-0.70f/14.5f));
             GameObject swordAttackGameObject = Instantiate(swordAttack, swordAttackPos, transform.rotation);
             swordAttackGameObject.transform.rotation = transform.rotation;
             Debug.Log("summon sword attack");
@@ -123,7 +124,7 @@ public class circleActivation : MonoBehaviour
             }
             if(gestureSpearAttack == true)
             {
-            Vector3 spearAttackPos = transform.TransformPoint(new Vector3(0,0,-0.70f/35));
+            Vector3 spearAttackPos = transform.TransformPoint(new Vector3(0,0,-0.70f/14.5f));
             GameObject spearAttackGameObject = Instantiate(spearAttack, spearAttackPos, transform.rotation);
             spearAttackGameObject.transform.rotation = transform.rotation;
             Debug.Log("summon sword attack");
@@ -131,7 +132,7 @@ public class circleActivation : MonoBehaviour
             }
             if(gestureGroundSpikes ==true)
             {
-                Vector3 groundSpikesPos = transform.TransformPoint(new Vector3(0,0,-0.85f/35f));
+                Vector3 groundSpikesPos = transform.TransformPoint(new Vector3(0,0,-0.85f/14.5f));
                 GameObject groundSpikesGameObject = Instantiate(groundSpikes, groundSpikesPos, transform.rotation);
                 groundSpikesGameObject.transform.rotation = transform.rotation;
                 Debug.Log("summon ground spikes");
@@ -154,6 +155,7 @@ public class circleActivation : MonoBehaviour
             }
             else
             {
+                Destroy(gameObject);
                 lightning.Stop();
                 chalkMaterial.SetColor("_EmissionColor", new Color(0,0,0,0));
                 hdr = false;

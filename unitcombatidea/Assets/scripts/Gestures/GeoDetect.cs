@@ -20,7 +20,7 @@ public class GeoDetect
     }
     public static float calcTheta(float x, float y)
     {
-        float theta = 90 - (Mathf.Atan2(y, -x) * Mathf.Rad2Deg);
+        float theta = 90 - (Mathf.Atan2(-y, x) * Mathf.Rad2Deg);
         if (theta < 0) { theta = 360 + theta; }
         return theta;
     }

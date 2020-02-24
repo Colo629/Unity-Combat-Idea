@@ -8,7 +8,7 @@ public class circleTeleport : MonoBehaviour
     public GameObject teleportThis;
     private AlchemyCircle alchCircle;
      bool shapeFlag = false;
-     public GameObject destroyMe;
+     public GameObject canvasClone;
    
     void Start()
     {
@@ -26,14 +26,14 @@ public class circleTeleport : MonoBehaviour
             }
         }
     }
-   /* void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         
         if(shapeFlag == false)
         {
-            Destroy(raycastTele);
+            Destroy(gameObject);
         }
-    }*/
+    }
     void OnTriggerEnter(Collider other)
     {
        Vector3 telePos = transform.TransformPoint(new Vector3(0f, 0f, 0)); 
@@ -42,7 +42,7 @@ public class circleTeleport : MonoBehaviour
        if(Physics.Raycast(transform.position, transform.up, out hit, Mathf.Infinity))
        {    
             Quaternion slopeRotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
-            GameObject canvasClone = Instantiate(raycastTele, hit.point, Quaternion.identity);
+            canvasClone = Instantiate(raycastTele, hit.point, Quaternion.identity);
             canvasClone.transform.rotation = canvasClone.transform.rotation * slopeRotation;
             canvasClone.transform.position = canvasClone.transform.TransformPoint(new Vector3(0,0, 0.01f / 35));
            
