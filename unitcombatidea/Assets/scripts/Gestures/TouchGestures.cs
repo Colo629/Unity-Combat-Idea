@@ -10,8 +10,8 @@ public class TouchGestures : MonoBehaviour
     public SteamVR_Action_Boolean padClickLeft;
     public SteamVR_Action_Boolean padClickRight;
 
-    public static int leftValue = 0;
-    public static int rightValue = 0;
+    public static int leftValue = -1;
+    public static int rightValue = -1;
 
     public float sqrThreshold = 0.04f;
 
@@ -32,6 +32,13 @@ public class TouchGestures : MonoBehaviour
         if (listenCondition())
         {
             GestureLoop();
+        }
+        else
+        {
+            /*  // TODO: add time delay to deactivation of hands
+            leftValue = -1;
+            rightValue = -1;
+            */
         }
     }
 
