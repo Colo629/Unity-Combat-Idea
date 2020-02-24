@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class pushyscript : MonoBehaviour
 {
+    public float speed = 3f;
    
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<Rigidbody>().velocity = new Vector3(50,0,0);
+    
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        gameObject.transform.position += transform.forward.normalized * Time.deltaTime * speed;
     }
 }

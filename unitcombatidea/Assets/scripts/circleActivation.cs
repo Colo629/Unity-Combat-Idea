@@ -87,7 +87,7 @@ public class circleActivation : MonoBehaviour
             {
 
             
-            Vector3 swordPos = transform.TransformPoint(new Vector3(0f, 0f, -0.5f/14.5f));
+            Vector3 swordPos = transform.TransformPoint(new Vector3(0f, 0f, -0.1f/14.5f));
             GameObject swordGameObject = Instantiate(sword, swordPos, transform.rotation);  
             swordGameObject.transform.rotation = transform.rotation; 
             Debug.Log("summon sword");
@@ -116,18 +116,18 @@ public class circleActivation : MonoBehaviour
             }
             if(gestureSwordAttack == true)
             {
-            Vector3 swordAttackPos = transform.TransformPoint(new Vector3(0,0,-0.70f/14.5f));
+            Vector3 swordAttackPos = transform.TransformPoint(new Vector3(170,0,0/14.5f));
             GameObject swordAttackGameObject = Instantiate(swordAttack, swordAttackPos, transform.rotation);
-            swordAttackGameObject.transform.rotation = transform.rotation;
+            swordAttackGameObject.transform.rotation = Quaternion.Euler(170,0,0);
             Debug.Log("summon sword attack");
             firstActivation = true;
             }
             if(gestureSpearAttack == true)
             {
-            Vector3 spearAttackPos = transform.TransformPoint(new Vector3(0,0,-0.70f/14.5f));
+            Vector3 spearAttackPos = transform.TransformPoint(new Vector3(0,0,0/14.5f)); 
             GameObject spearAttackGameObject = Instantiate(spearAttack, spearAttackPos, transform.rotation);
-            spearAttackGameObject.transform.rotation = transform.rotation;
-            Debug.Log("summon sword attack");
+            spearAttackGameObject.transform.rotation = Quaternion.Euler(170,0,0);
+            Debug.Log("summon spear attack");
             firstActivation = true;
             }
             if(gestureGroundSpikes ==true)
