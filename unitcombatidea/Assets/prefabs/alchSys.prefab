@@ -33,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069842284280976697}
   m_LocalRotation: {x: -0.7071068, y: 0.000000015454312, z: 0.000000015454312, w: 0.7071068}
-  m_LocalPosition: {x: 7.675, y: 0.68, z: 0.66}
+  m_LocalPosition: {x: 7.675, y: 0.072, z: 0.66}
   m_LocalScale: {x: 14.492097, y: 14.492097, z: 14.492097}
   m_Children:
   - {fileID: 8261474486102651443}
@@ -118,7 +118,7 @@ MonoBehaviour:
   timeActivate: 0
   firstCollision: 0
   gestureSword: 0
-  gestureSpear: 1
+  gestureSpear: 0
   gestureWall: 0
   gestureSwordAttack: 0
   gestureGroundSpikes: 0
@@ -126,13 +126,15 @@ MonoBehaviour:
   sword: {fileID: 406330551895876030, guid: d9b5ac5a7bdcc6d4d89b34d51d350409, type: 3}
   spear: {fileID: 6451464454579315611, guid: e8d6fda385ccced4cbb8982f9ccd3589, type: 3}
   wall: {fileID: 7435663842556676034, guid: 53c5d9d1772d52b40b6c6cb0e579ed4a, type: 3}
-  swordAttack: {fileID: 0}
+  swordAttack: {fileID: 6499552973075753919, guid: 9e0bc55a39e82da41b45b1b3bd1443fc,
+    type: 3}
   groundSpikes: {fileID: 0}
-  spearAttack: {fileID: 0}
+  spearAttack: {fileID: 131853893833355334, guid: 09583c757e84abc4d9fe6bb62ee01641,
+    type: 3}
   chalkGlow: {fileID: 2069842284278713337}
   hdr: 1
   lightning: {fileID: 8261474486102651444}
-  fingerGesture: 1
+  fingerGesture: 0
   activateCircle: 0
   firstActivation: 0
   spawnedObject: {fileID: 0}
@@ -277,6 +279,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 6.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 7169891080253903158}
   - {fileID: 7169891080745088552}
   m_Father: {fileID: 3630861057314196252}
   m_RootOrder: 1
@@ -309,10 +312,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7169891080253903158}
+  m_Children: []
   m_Father: {fileID: 7169891079646055597}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7169891080745088555
 Camera:
@@ -5068,7 +5070,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 7169891080745088552}
+    m_TransformParent: {fileID: 7169891079646055597}
     m_Modifications:
     - target: {fileID: 100000, guid: 2c40d495cef0cb743ba0846749801db3, type: 3}
       propertyPath: m_Name
