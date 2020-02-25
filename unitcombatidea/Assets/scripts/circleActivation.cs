@@ -64,24 +64,27 @@ public class circleActivation : MonoBehaviour
         {
             gestureWall = true;
         }
-        if(touchValue == 04)
+        else if(touchValue == 04)
         {
             gestureSpear = true;
         }
-        if(touchValue == 61)
+       else if(touchValue == 61)
         {
             gestureSword = true;
         }
-        if(touchValue == 54)
+        else if(touchValue == 44)
         {
             gestureGroundSpikes = true;
         }    
-        if(touchValue == 40)
+        else if(touchValue == 40)
         {
             gestureSpearAttack = true;
-        }    // 00: wall, 04: spear, 61: sword, 60: sword attack, 54: ground spikes, 40: spear attack
-        
-          if(firstCollision == false)
+        }    // 00: wall, 04: spear, 61: sword, 60: sword attack, 44: ground spikes, 40: spear attack
+        else
+        {
+            return;
+        }
+        if(firstCollision == false)
          {
              firstCollision = true;
              return;
