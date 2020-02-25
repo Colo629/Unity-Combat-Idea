@@ -4,4 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/transparency2.unity
+    guid: 3b3eb5f297ab9524a8b3582cd5097b2b
+  m_configObjects: {}

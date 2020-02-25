@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raycastTele: {fileID: 0}
   teleportThis: {fileID: 0}
-  destroyMe: {fileID: 0}
+  canvasClone: {fileID: 0}
 --- !u!1 &8563696198742782865
 GameObject:
   m_ObjectHideFlags: 0

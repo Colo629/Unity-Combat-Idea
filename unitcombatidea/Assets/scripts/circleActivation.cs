@@ -159,9 +159,9 @@ public class circleActivation : MonoBehaviour
             }
             if(gestureGroundSpikes ==true)
             {
-                Vector3 groundSpikesPos = transform.TransformPoint(new Vector3(0,0,-0.85f/14.5f));
+                Vector3 groundSpikesPos = transform.TransformPoint(new Vector3(0,0,-0.1f/14.5f));
                 GameObject groundSpikesGameObject = Instantiate(groundSpikes, groundSpikesPos, transform.rotation);
-                groundSpikesGameObject.transform.rotation = transform.rotation;
+                groundSpikesGameObject.transform.rotation = Quaternion.Euler(-270,0,180);
                 Debug.Log("summon ground spikes");
                 firstActivation = true;
             }
