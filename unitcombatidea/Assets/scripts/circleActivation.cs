@@ -5,7 +5,8 @@ using UnityEngine;
 
 
 public class circleActivation : MonoBehaviour
-{   private float currentTime = 0;
+{   public int touchValue = 0;
+    private float currentTime = 0;
     public bool timeActivate = false;
     public bool firstCollision = false;
     public bool gestureSword = false;
@@ -37,7 +38,12 @@ public class circleActivation : MonoBehaviour
         alchCircle = gameObject.GetComponent<AlchemyCircle>();
         //lightning.Stop();
         chalkMaterial = chalkGlow.material;
+         
     }
+    
+    
+        
+    
      void OnTriggerEnter(Collider other) 
      {
         bool shapeFlag = false;
@@ -50,14 +56,31 @@ public class circleActivation : MonoBehaviour
                 shapeFlag = true;
             }
          }
-        if (fingerGesture == false) 
+         if (shapeFlag == false)
         {
             return;
         }
-        if (shapeFlag == false)
+        if(touchValue == 00) 
         {
-            return;
+            gestureWall = true;
         }
+        if(touchValue == 04)
+        {
+            gestureSpear = true;
+        }
+        if(touchValue == 61)
+        {
+            gestureSword = true;
+        }
+        if(touchValue == 54)
+        {
+            gestureGroundSpikes = true;
+        }    
+        if(touchValue == 40)
+        {
+            gestureSpearAttack = true;
+        }    // 00: wall, 04: spear, 61: sword, 60: sword attack, 54: ground spikes, 40: spear attack
+        
           if(firstCollision == false)
          {
              firstCollision = true;
@@ -74,8 +97,9 @@ public class circleActivation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        touchValue = TouchGestures.GestureValue();
          
-            
+            // 00: wall, 04: spear, 61: sword, 60: sword attack, 54: ground spikes, 40: spear attack
         if (!activateCircle)
         {
             return;
@@ -83,7 +107,7 @@ public class circleActivation : MonoBehaviour
                 
         if (!firstActivation == true)
         {
-            if(gestureSword ==true)
+            if(gestureSword == true)
             {
 
             

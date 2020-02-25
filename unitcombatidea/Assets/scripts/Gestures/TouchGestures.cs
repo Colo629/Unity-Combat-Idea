@@ -47,6 +47,7 @@ public class TouchGestures : MonoBehaviour
     {
         if ((leftHand.position - rightHand.position).sqrMagnitude < sqrThreshold)
         {
+            
             return true;
             
         }
@@ -59,16 +60,19 @@ public class TouchGestures : MonoBehaviour
 
     private void GestureLoop()
     {
+        
         Vector2 rightPad = radialSelector.GetAxis(SteamVR_Input_Sources.RightHand);
         Vector2 leftPad = radialSelector.GetAxis(SteamVR_Input_Sources.LeftHand);
 
-        if (padClickLeft.GetStateDown(SteamVR_Input_Sources.Any))
+        if (padClickLeft.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
+            Debug.Log("left click");
             leftValue = GeoDetect.hexalPadCalc(GeoDetect.calcPadTheta(-leftPad.x, leftPad.y));
         }
 
-        if (padClickRight.GetStateDown(SteamVR_Input_Sources.Any))
+        if (padClickRight.GetStateDown(SteamVR_Input_Sources.RightHand))
         {
+            Debug.Log("right click");
             rightValue = GeoDetect.hexalPadCalc(GeoDetect.calcPadTheta(rightPad.x, rightPad.y));
         }
     }
