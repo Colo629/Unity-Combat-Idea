@@ -84,6 +84,7 @@ public class drawScript : MonoBehaviour
             var lineEndPoint = GetMouseCameraPoint();
             var gameObject = new GameObject();
             var lineRenderer = gameObject.AddComponent<LineRenderer>();
+            gameObject.transform.parent = camera.transform;
             lineRenderer.material = lineMaterial;
             // lineRenderer.positionCount = 2;
             lineRenderer.SetPositions(new Vector3[] { lineStartPoint.Value, lineEndPoint });
@@ -102,6 +103,7 @@ public class drawScript : MonoBehaviour
             var lineEndPoint = GetMouseCameraPoint();
             var gameObject = new GameObject();
             var lineRenderer = gameObject.AddComponent<LineRenderer>();
+            gameObject.transform.parent = camera.transform;
             lineRenderer.material = lineMaterial;
             // lineRenderer.positionCount = 2;
             lineRenderer.SetPositions(new Vector3[] { lineStartPoint.Value, lineEndPoint });

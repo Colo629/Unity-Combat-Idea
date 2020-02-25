@@ -179,6 +179,11 @@ public class circleActivation : MonoBehaviour
             }
             else
             {
+                Transform camTransform = GetComponent<CamInfo>().cam.transform;
+                for (int i = 0; i < camTransform.childCount; i++)
+                {
+                    Destroy(camTransform.GetChild(i).gameObject);
+                }
                 Destroy(gameObject);
                 lightning.Stop();
                 chalkMaterial.SetColor("_EmissionColor", new Color(0,0,0,0));
