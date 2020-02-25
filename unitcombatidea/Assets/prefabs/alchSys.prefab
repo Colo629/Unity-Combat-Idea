@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25497a9c415ce5740af3d2e965e22183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchValue: 0
   timeActivate: 0
   firstCollision: 0
   gestureSword: 0
@@ -134,6 +135,7 @@ MonoBehaviour:
   fingerGesture: 1
   activateCircle: 0
   firstActivation: 0
+  spawnedObject: {fileID: 0}
 --- !u!114 &2069842284280976690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +227,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3630861057314196252}
-  - component: {fileID: 366436690491154429}
   m_Layer: 0
   m_Name: alchSys
   m_TagString: Untagged
@@ -249,30 +250,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &366436690491154429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3208006706796420172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a04e5e796ebdb3f4882b605d69bd8bec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radialSelector:
-    actionPath: /actions/default/in/controlSymbolSelect
-    needsReinit: 0
-  padClickLeft:
-    actionPath: /actions/default/in/controlSymbolClick
-    needsReinit: 0
-  padClickRight:
-    actionPath: /actions/default/in/controlSymbolClick
-    needsReinit: 0
-  sqrThreshold: 0.04
-  leftHand: {fileID: 0}
-  rightHand: {fileID: 0}
 --- !u!1 &7169891079646055596
 GameObject:
   m_ObjectHideFlags: 0
