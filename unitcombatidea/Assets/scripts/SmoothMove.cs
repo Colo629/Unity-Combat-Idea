@@ -13,18 +13,20 @@ public class SmoothMove : MonoBehaviour
     {
         if (lockAxis.GetState(SteamVR_Input_Sources.LeftHand))
         {
-            Debug.Log("tryitngdfsasfd");
+            
             Vector3 playerPos = playerBody.transform.position;
             Vector3 contCoords = moveAxis.GetAxis(SteamVR_Input_Sources.LeftHand);
             contCoords = new Vector3(contCoords.x, 0, contCoords.y);
+            Debug.Log("tryitngdfsasfd11 " + contCoords);
             playerPos = playerPos + transform.TransformPoint(contCoords * Time.deltaTime);
         }
         else if (lockAxis.GetState(SteamVR_Input_Sources.RightHand))
         {
-            Debug.Log("tryitngdfsasfd22");
+            
             Vector3 playerPos = playerBody.transform.position;
             Vector3 contCoords = moveAxis.GetAxis(SteamVR_Input_Sources.RightHand);
             contCoords = new Vector3(contCoords.x, 0, contCoords.y);
+            Debug.Log("tryitngdfsasfd22 " + contCoords);
             playerPos = playerPos + transform.TransformPoint(contCoords * Time.deltaTime);
         }
     }
