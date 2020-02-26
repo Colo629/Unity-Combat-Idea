@@ -128,7 +128,8 @@ MonoBehaviour:
   wall: {fileID: 7435663842556676034, guid: 53c5d9d1772d52b40b6c6cb0e579ed4a, type: 3}
   swordAttack: {fileID: 6499552973075753919, guid: 9e0bc55a39e82da41b45b1b3bd1443fc,
     type: 3}
-  groundSpikes: {fileID: 0}
+  groundSpikes: {fileID: 5489586229545369188, guid: 7d0cede757f95bb42add98d77f411dbe,
+    type: 3}
   spearAttack: {fileID: 131853893833355334, guid: 09583c757e84abc4d9fe6bb62ee01641,
     type: 3}
   chalkGlow: {fileID: 2069842284278713337}
