@@ -60,6 +60,14 @@
       "requirement": "suggested"
     },
     {
+      "name": "/actions/default/in/leftMoveValue",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/default/in/leftMoveClick",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
