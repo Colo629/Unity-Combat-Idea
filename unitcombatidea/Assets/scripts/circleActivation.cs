@@ -60,15 +60,15 @@ public class circleActivation : MonoBehaviour
         {
             return;
         }
-        if(touchValue == 00) 
+        if(touchValue == 62) 
         {
             gestureWall = true;
         }
-        else if(touchValue == 04)
+        else if(touchValue == 26)
         {
             gestureSpear = true;
         }
-       else if(touchValue == 61)
+       else if(touchValue == 22)
         {
             gestureSword = true;
         }
@@ -153,7 +153,7 @@ public class circleActivation : MonoBehaviour
             {
             Vector3 spearAttackPos = transform.TransformPoint(new Vector3(0,0,0/14.5f)); 
             GameObject spearAttackGameObject = Instantiate(spearAttack, spearAttackPos, transform.rotation);
-            spearAttackGameObject.transform.rotation = Quaternion.Euler(170,0,0);
+            spearAttackGameObject.transform.rotation = transform.rotation;
             Debug.Log("summon spear attack");
             firstActivation = true;
             }
@@ -161,7 +161,7 @@ public class circleActivation : MonoBehaviour
             {
                 Vector3 groundSpikesPos = transform.TransformPoint(new Vector3(0,0,-0.1f/14.5f));
                 GameObject groundSpikesGameObject = Instantiate(groundSpikes, groundSpikesPos, transform.rotation);
-                groundSpikesGameObject.transform.rotation = Quaternion.Euler(-270,0,180);
+                groundSpikesGameObject.transform.rotation = Quaternion.Euler(-225,0,180);
                 Debug.Log("summon ground spikes");
                 firstActivation = true;
             }

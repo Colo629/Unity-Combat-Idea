@@ -27,14 +27,7 @@ public class circleTeleport : MonoBehaviour
             }
         }
     }
-    void OnTriggerExit(Collider other)
-    {
-        
-        if(shapeFlag == false)
-        {
-            Destroy(canvasClone); 
-        }
-    }
+    
     void OnTriggerEnter(Collider other)
     {
        Vector3 telePos = transform.TransformPoint(new Vector3(0f, 0f, 0)); 

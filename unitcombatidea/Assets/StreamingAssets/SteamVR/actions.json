@@ -52,12 +52,12 @@
     {
       "name": "/actions/default/in/controlSymbolSelect",
       "type": "vector2",
-      "requirement": "mandatory"
+      "requirement": "suggested"
     },
     {
       "name": "/actions/default/in/controlSymbolClick",
       "type": "boolean",
-      "requirement": "mandatory"
+      "requirement": "suggested"
     },
     {
       "name": "/actions/default/out/Haptic",
