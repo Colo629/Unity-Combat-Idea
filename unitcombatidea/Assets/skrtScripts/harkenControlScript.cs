@@ -53,6 +53,10 @@ public class harkenControlScript : MonoBehaviour
                 }
                 leftHarkenFunction();
             }
+            if(grapplingHookL.hookedL)
+            {
+                leftHarkArmed = false;
+            }
             }
         }
         if(rightController == true)
@@ -72,6 +76,10 @@ public class harkenControlScript : MonoBehaviour
                 }
                 rightHarkenFunction();
                 }   
+                if(grapplingHookR.hookedR)
+                {
+                    rightHarkArmed = false;
+                }
             }
         }
     }
