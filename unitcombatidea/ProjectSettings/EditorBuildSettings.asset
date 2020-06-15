@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/transparency2.unity
     guid: 3b3eb5f297ab9524a8b3582cd5097b2b
+  - enabled: 1
+    path: Assets/skrtttttt.unity
+    guid: c75f6e7a8927a5b4d81bec29a712e14b
   m_configObjects: {}

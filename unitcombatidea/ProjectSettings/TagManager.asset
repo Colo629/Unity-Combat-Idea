@@ -6,6 +6,10 @@ TagManager:
   tags:
   - projectile
   - FxTemporaire
+  - hook
+  - hookable
+  - hookL
+  - hookR
   layers:
   - Default
   - TransparentFX
@@ -21,14 +25,14 @@ TagManager:
   - draw
   - cube
   - noGrabby
-  - teleportonly
+  - playerOnly
+  - floor
+  - character controller
+  - gunbarrel
   - 
-  - 
-  - 
-  - 
-  - 
+  - grapplingHook
   - CircleCams
-  - 
+  - mechBody
   - 
   - 
   - 

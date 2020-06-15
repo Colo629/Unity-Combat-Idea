@@ -137,6 +137,94 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Vector2 rightJoyStick
+        {
+            get
+            {
+                return SteamVR_Actions.default_rightJoyStick;
+            }
+        }
+        
+        public virtual SteamVR_Action_Single rightTriggerMech
+        {
+            get
+            {
+                return SteamVR_Actions.default_rightTriggerMech;
+            }
+        }
+        
+        public virtual SteamVR_Action_Single leftTriggerMech
+        {
+            get
+            {
+                return SteamVR_Actions.default_leftTriggerMech;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean fireLeftGrapple
+        {
+            get
+            {
+                return SteamVR_Actions.default_fireLeftGrapple;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean retractLeftGrapple
+        {
+            get
+            {
+                return SteamVR_Actions.default_retractLeftGrapple;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean fireRightGrapple
+        {
+            get
+            {
+                return SteamVR_Actions.default_fireRightGrapple;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean retractRightGrapple
+        {
+            get
+            {
+                return SteamVR_Actions.default_retractRightGrapple;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 leftHarken
+        {
+            get
+            {
+                return SteamVR_Actions.default_leftHarken;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 rightHarken
+        {
+            get
+            {
+                return SteamVR_Actions.default_rightHarken;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean armLeftHarken
+        {
+            get
+            {
+                return SteamVR_Actions.default_armLeftHarken;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean armRightHarken
+        {
+            get
+            {
+                return SteamVR_Actions.default_armRightHarken;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get

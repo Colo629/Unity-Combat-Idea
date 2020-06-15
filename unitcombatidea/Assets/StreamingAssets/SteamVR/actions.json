@@ -2,11 +2,13 @@
   "actions": [
     {
       "name": "/actions/default/in/InteractUI",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "optional"
     },
     {
       "name": "/actions/default/in/Teleport",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "optional"
     },
     {
       "name": "/actions/default/in/GrabPinch",
@@ -43,21 +45,22 @@
     {
       "name": "/actions/default/in/SnapTurnLeft",
       "type": "boolean",
-      "requirement": "suggested"
+      "requirement": "optional"
     },
     {
       "name": "/actions/default/in/SnapTurnRight",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "optional"
     },
     {
       "name": "/actions/default/in/controlSymbolSelect",
       "type": "vector2",
-      "requirement": "suggested"
+      "requirement": "optional"
     },
     {
       "name": "/actions/default/in/controlSymbolClick",
       "type": "boolean",
-      "requirement": "suggested"
+      "requirement": "optional"
     },
     {
       "name": "/actions/default/in/leftMoveValue",
@@ -65,6 +68,51 @@
     },
     {
       "name": "/actions/default/in/leftMoveClick",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/rightJoyStick",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/default/in/rightTriggerMech",
+      "type": "vector1"
+    },
+    {
+      "name": "/actions/default/in/leftTriggerMech",
+      "type": "vector1"
+    },
+    {
+      "name": "/actions/default/in/fireLeftGrapple",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/retractLeftGrapple",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/fireRightGrapple",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/retractRightGrapple",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/leftHarken",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/default/in/rightHarken",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/default/in/armLeftHarken",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/armRightHarken",
       "type": "boolean"
     },
     {
@@ -104,7 +152,7 @@
   "action_sets": [
     {
       "name": "/actions/default",
-      "usage": "single"
+      "usage": "leftright"
     },
     {
       "name": "/actions/platformer",

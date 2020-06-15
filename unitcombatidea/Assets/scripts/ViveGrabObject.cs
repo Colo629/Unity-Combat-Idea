@@ -38,6 +38,13 @@ public class ViveGrabObject : MonoBehaviour
         }
         collidingObject = other.gameObject; //If rigidbody, then assign object to collidingObject variable
     }
+    void OnTriggerExit(Collider other)
+    {
+        if (collidingObject == other.gameObject)
+        {
+            collidingObject = null;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -70,5 +77,6 @@ public class ViveGrabObject : MonoBehaviour
     {
         objectInHand.GetComponent<Rigidbody>().isKinematic = false;
         objectInHand.transform.SetParent (null);
+        objectInHand = null; 
     }
 }
