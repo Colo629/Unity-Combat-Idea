@@ -16,8 +16,8 @@ public class circleTeleport : MonoBehaviour
         alchCircle = gameObject.GetComponent<AlchemyCircle>();
     }
     void OnTriggerStay(Collider other)
-    {
-        Debug.Log("staying");
+    {/*
+        Debug.Log("staying" + other.transform.gameObject.name);
          
          foreach(bool shape in alchCircle.simpleGeometryArray)
          {
@@ -25,7 +25,7 @@ public class circleTeleport : MonoBehaviour
             {
                 shapeFlag = true;
             }
-        }
+        }*/
     }
     
     void OnTriggerEnter(Collider other)
