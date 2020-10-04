@@ -10,6 +10,10 @@ TagManager:
   - hookable
   - hookL
   - hookR
+  - indexF
+  - middleF
+  - ringF
+  - pinkyF
   layers:
   - Default
   - TransparentFX
@@ -33,8 +37,8 @@ TagManager:
   - grapplingHook
   - CircleCams
   - mechBody
-  - 
-  - 
+  - fingerGumDumb
+  - fingerBox
   - 
   - 
   - 

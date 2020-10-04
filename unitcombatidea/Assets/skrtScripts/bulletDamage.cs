@@ -5,17 +5,30 @@ using UnityEngine;
 public class bulletDamage : MonoBehaviour
 {
 
-
     public damageScript damageScript;
     public Collider colliderHit;
-    public Collision collisionData;
+    public Collider collisionData;
     public Transform transformHit;
+    public float bulletPierce = 0;
+    public float bulletDam = 0;
 
-    void OnCollisionEnter(Collision collisionData)
+    void OnTriggerEnter(Collider collisionData)
     {
         damageScript = collisionData.gameObject.GetComponent<damageScript>();
-        damageScript.healthPool -= 20f;
+        if(bulletPierce >= damageScript.penValue)
+        {
+            damageScript.healthPool -= bulletDam;
+            damageScript.damageTypeBullet = true;
+            damageScript.damageTypeSword = false;
        // Destroy(gameObject);
+        }
+        if(bulletPierce < damageScript.penValue)
+        {
+            damageScript.healthPool -= bulletDam/5;
+            damageScript.damageTypeBullet = true;
+            damageScript.damageTypeSword = false;
+        }
+        
     }
     // Start is called before the first frame update
     void Start()

@@ -40,7 +40,7 @@ public class harkenControlScript : MonoBehaviour
         {
             if(leverScriptL.grabbed == true)
             {
-            if(!grapplingHookL.hookedL)
+            if(!grapplingHookL.firedL)
             {
                 if(armLeftHarken.GetStateDown(leftHand))
                 {
@@ -53,17 +53,17 @@ public class harkenControlScript : MonoBehaviour
                 }
                 leftHarkenFunction();
             }
-            if(grapplingHookL.hookedL)
+            if(grapplingHookL.firedL)
             {
                 leftHarkArmed = false;
             }
-            }
+           }
         }
         if(rightController == true)
         {
             if(leverScriptR.grabbed == true)
             {
-                if(!grapplingHookR.hookedR)
+                if(!grapplingHookR.firedR)
                 {
                     if(armRightHarken.GetStateDown(rightHand))
                     {
@@ -76,7 +76,7 @@ public class harkenControlScript : MonoBehaviour
                 }
                 rightHarkenFunction();
                 }   
-                if(grapplingHookR.hookedR)
+                if(grapplingHookR.firedR)
                 {
                     rightHarkArmed = false;
                 }
@@ -106,7 +106,7 @@ public class harkenControlScript : MonoBehaviour
     harkenHolderR.localEulerAngles = new Vector3(Mathf.Clamp(harkenAngleY,-100,100),Mathf.Clamp(harkenAngleX,-100,100),0);
     if(rightHarkArmed == true)
     {
-        Debug.Log("armedRightHand");
+        
         if(fireRightHarkenTrigger.axis >= 0.7f)
             {
                 grapplingHookR.firedR = true;

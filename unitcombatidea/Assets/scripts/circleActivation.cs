@@ -60,26 +60,26 @@ public class circleActivation : MonoBehaviour
         {
             return;
         }
-        if(touchValue == 62) 
+        if(touchValue == 33) 
         {
             gestureWall = true;
         }
-        else if(touchValue == 26)
+        else if(touchValue == 22)
         {
             gestureSpear = true;
         }
-       else if(touchValue == 22)
+       else if(touchValue == 21)
         {
             gestureSword = true;
         }
-        else if(touchValue == 44)
+        else if(touchValue == 31)
         {
             gestureGroundSpikes = true;
         }    
         else if(touchValue == 40)
         {
             gestureSpearAttack = true;
-        }    // 00: wall, 04: spear, 61: sword, 60: sword attack, 44: ground spikes, 40: spear attack
+        }    
         else
         {
             return;

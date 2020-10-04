@@ -1,0 +1,148 @@
+fileFormatVersion: 2
+guid: 6eae8f673f1a46847a3063b06ec06745
+timeCreated: 1522508526
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ammo barrel housin
+    100002: ammo drum
+    100004: ammo feeder
+    100006: ammo in/out
+    100008: antena
+    100010: antenna baes
+    100012: //RootNode
+    100014: backammodrum
+    100016: bIGASSBAREL
+    100018: body
+    100020: braket
+    100022: camera housin
+    100024: camera lens
+    100026: gas piston
+    100028: gun mount
+    100030: piston block
+    400000: ammo barrel housin
+    400002: ammo drum
+    400004: ammo feeder
+    400006: ammo in/out
+    400008: antena
+    400010: antenna baes
+    400012: //RootNode
+    400014: backammodrum
+    400016: bIGASSBAREL
+    400018: body
+    400020: braket
+    400022: camera housin
+    400024: camera lens
+    400026: gas piston
+    400028: gun mount
+    400030: piston block
+    2300000: ammo barrel housin
+    2300002: ammo drum
+    2300004: ammo feeder
+    2300006: ammo in/out
+    2300008: antena
+    2300010: antenna baes
+    2300012: backammodrum
+    2300014: bIGASSBAREL
+    2300016: body
+    2300018: braket
+    2300020: camera housin
+    2300022: camera lens
+    2300024: gas piston
+    2300026: gun mount
+    2300028: piston block
+    3300000: ammo barrel housin
+    3300002: ammo drum
+    3300004: ammo feeder
+    3300006: ammo in/out
+    3300008: antena
+    3300010: antenna baes
+    3300012: backammodrum
+    3300014: bIGASSBAREL
+    3300016: body
+    3300018: braket
+    3300020: camera housin
+    3300022: camera lens
+    3300024: gas piston
+    3300026: gun mount
+    3300028: piston block
+    4300000: ammo drum
+    4300002: antenna baes
+    4300004: antena
+    4300006: body
+    4300008: camera housin
+    4300010: gun mount
+    4300012: backammodrum
+    4300014: ammo barrel housin
+    4300016: ammo feeder
+    4300018: ammo in/out
+    4300020: piston block
+    4300022: gas piston
+    4300024: bIGASSBAREL
+    4300026: braket
+    4300028: camera lens
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -116,6 +116,18 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/lSqueeze",
+      "type": "vector1"
+    },
+    {
+      "name": "/actions/default/in/rSqueeze",
+      "type": "vector1"
+    },
+    {
+      "name": "/actions/default/in/switchToMelee",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },

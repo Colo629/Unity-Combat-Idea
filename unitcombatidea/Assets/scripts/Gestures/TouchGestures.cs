@@ -9,6 +9,10 @@ public class TouchGestures : MonoBehaviour
 
     public SteamVR_Action_Boolean padClickLeft;
     public SteamVR_Action_Boolean padClickRight;
+    public SteamVR_Action_Single rSqueeze;
+    public SteamVR_Action_Single lSqueeze;
+    public fingerGestureScript rightHandGesture;
+    public fingerGestureScript leftHandGesture;
 
     public static int leftValue = -1;
     public static int rightValue = -1;
@@ -29,6 +33,8 @@ public class TouchGestures : MonoBehaviour
 
     void Update()
     {
+        // use >0.6 to lock in symbol
+
         if (listenCondition())
         {
             GestureLoop();
@@ -60,21 +66,23 @@ public class TouchGestures : MonoBehaviour
 
     private void GestureLoop()
     {
-        
+        leftValue = leftHandGesture.summonNumberL;
+        rightValue = rightHandGesture.summonNumberR;
+        /*
         Vector2 rightPad = radialSelector.GetAxis(SteamVR_Input_Sources.RightHand);
         Vector2 leftPad = radialSelector.GetAxis(SteamVR_Input_Sources.LeftHand);
 
         if (padClickLeft.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
-            Debug.Log("left click");
+            
             leftValue = GeoDetect.hexalPadCalc(GeoDetect.calcPadTheta(-leftPad.x, leftPad.y));
         }
 
         if (padClickRight.GetStateDown(SteamVR_Input_Sources.RightHand))
         {
-            Debug.Log("right click");
+            
             rightValue = GeoDetect.hexalPadCalc(GeoDetect.calcPadTheta(rightPad.x, rightPad.y));
-        }
+        }*/
     }
 
     public static int GestureValue()

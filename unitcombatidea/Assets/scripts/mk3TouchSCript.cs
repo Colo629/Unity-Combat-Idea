@@ -10,9 +10,11 @@ public class mk3TouchSCript : MonoBehaviour
     public float m_MaxSpeed = 1.0f;
     public float m_RotateIncrement = 45;
     public float deadzone;
+    public float rotationSpeed = 0;
+    public float rotateSens = 90f;
 
     public SteamVR_Action_Boolean m_LeftRotatePress = null;
-    public SteamVR_Action_Boolean m_RightRotatePress = null;
+    public SteamVR_Action_Vector2 m_RightRotatePress = null;
     public SteamVR_Action_Boolean m_MovePress = null;
     public SteamVR_Action_Vector2 m_MoveValue = null;
 
@@ -50,7 +52,7 @@ public class mk3TouchSCript : MonoBehaviour
         //If not moving
         if(m_MoveValue.axis.magnitude == 0)
             m_Speed = 0;
-            Debug.Log("not moving");
+            
         
         if(m_MoveValue.axis.magnitude > deadzone)
             //Add, clamp
@@ -59,7 +61,7 @@ public class mk3TouchSCript : MonoBehaviour
 
             //Orientation
             movement += orientation * (m_Speed * Vector3.forward)  ;
-             Debug.Log("move it move it");
+            
 
             //Gravity
              movement.y -= m_Gravity * Time.deltaTime;
@@ -71,7 +73,7 @@ public class mk3TouchSCript : MonoBehaviour
 
     private void SnapRotation()
     {
-        float snapValue = 0.0f;
+       /* float snapValue = 0.0f;
    
          if (m_LeftRotatePress.GetStateDown(SteamVR_Input_Sources.RightHand))
         snapValue = -Mathf.Abs(m_RotateIncrement);
@@ -79,7 +81,26 @@ public class mk3TouchSCript : MonoBehaviour
         if (m_RightRotatePress.GetStateDown(SteamVR_Input_Sources.RightHand))
         snapValue = Mathf.Abs(m_RotateIncrement);
 
-        transform.RotateAround(m_Head.position, Vector3.up, snapValue);    
+        transform.RotateAround(m_Head.position, Vector3.up, snapValue);*/
+        float snapValue = 0.0f;
+   
+       //  if (m_LeftRotatePress.GetStateDown(SteamVR_Input_Sources.RightHand))
+        //snapValue = -Mathf.Abs(m_RotateIncrement);
+    
+        if (Mathf.Abs(m_RightRotatePress.axis.x)  < deadzone)
+        {
+            rotationSpeed = 0;
+            
+        }
+        if(Mathf.Abs(m_RightRotatePress.axis.x) > deadzone)
+        {
+            
+            rotationSpeed = m_RightRotatePress.axis.x * rotateSens;
+            rotationSpeed = rotationSpeed * Time.deltaTime;
+
+        //snapValue = Mathf.Abs(m_RotateIncrement);
+        transform.RotateAround(m_Head.position, Vector3.up, rotationSpeed);   
+        }   
     }
     
     private void HandleHeight()

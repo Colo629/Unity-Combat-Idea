@@ -9,10 +9,13 @@ public class gunScript : MonoBehaviour
     public armScript rightArm;
     public armScript leftArm;
     public damageScript damageScript;
+    public gunControlScript gcs;
     public GameObject bullet;
     public float bulletSpeed = 1000f;
     public bool pistolFiredR = false;
     public bool pistolFiredL = false;
+    public float bulletsFired = 0;
+    public float bulletPierce = 0;
 
     
     
@@ -23,34 +26,14 @@ public class gunScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-        if(!pistolFiredR)
-        {
-             if(rightArm.fireRightGun == true)
-        {
+    public void fireGun()
+    {         
+        if(gcs.ammoPool > 0)
+            {
                 GameObject instBullet = Instantiate(bullet,transform.position,transform.rotation) as GameObject;
                 Rigidbody instBulletRigidbody = instBullet.GetComponent<Rigidbody>();
                 instBulletRigidbody.AddForce(instBullet.transform.forward * bulletSpeed);
-                pistolFiredR = true;
-            //deleting bullets after a while might be a good idea
-            
-        }
-        //}
-        }
-         if(!pistolFiredL)
-        {
-             if(leftArm.fireLeftGun == true)
-        {
-                GameObject instBullet = Instantiate(bullet,transform.position,transform.rotation) as GameObject;
-                Rigidbody instBulletRigidbody = instBullet.GetComponent<Rigidbody>();
-                instBulletRigidbody.AddForce(instBullet.transform.forward * bulletSpeed);
-                pistolFiredL = true;
-            //deleting bullets after a while might be a good idea
-            
-        }
+                gcs.ammoPool -= 1f;
+            }
     }
-
-    }
-    }
+}

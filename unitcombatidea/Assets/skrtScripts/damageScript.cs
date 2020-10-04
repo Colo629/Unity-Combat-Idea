@@ -9,6 +9,12 @@ public class damageScript : MonoBehaviour
     public GameObject mechPart;
     public bool leftLeg;
     public bool rightLeg;
+    public float penValue = 0f;
+    public bool damageTypeBullet = false;
+    public bool damageTypeSword = false;
+    public bool destroyed;
+    public GameObject trueKill;
+    public GameObject mechPart2;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,18 +28,37 @@ public class damageScript : MonoBehaviour
         {
             if(!rightLeg)
             {
-
-            
-
-        
-
                 if(healthPool <= 20f)
                 {
-                    foreach (Transform child in transform)
+                    if(!destroyed)
                     {
-                        Destroy(child.gameObject);
+                        foreach (Transform child in transform)
+                        {
+                            Destroy(child.gameObject);
+                        }
+                        Destroy(mechPart);
+                        Destroy(trueKill);
+                        
+                        
+                        if(damageTypeSword == true)
+                        {
+                            GameObject instDestroyedPart = Instantiate(mechPart,transform.position,transform.rotation) as GameObject;
+                            //ejectedPart.GetComponent<Rigidbody>()
+                            Rigidbody instDestroyedRigidbody = instDestroyedPart.GetComponent<Rigidbody>();
+                            instDestroyedRigidbody.isKinematic = false;
+            
+                            
+                        }
+                        if(damageTypeBullet == true)
+                        {
+                            GameObject instDestroyedPart = Instantiate(mechPart,transform.position,transform.rotation) as GameObject;
+                            //ejectedPart.GetComponent<Rigidbody>()
+                            Rigidbody instDestroyedRigidbody = instDestroyedPart.GetComponent<Rigidbody>();
+                            instDestroyedRigidbody.isKinematic = false;
+   
+                        }
+                        destroyed = true;
                     }
-                    Destroy(mechPart);
                 }
             }
         }

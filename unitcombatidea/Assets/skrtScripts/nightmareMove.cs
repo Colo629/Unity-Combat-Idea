@@ -30,7 +30,7 @@ public class nightmareMove : MonoBehaviour
 
     private void Awake()
     {
-        m_CharacterController = GetComponent<CharacterController>();
+        
     }
     // Start is called before the first frame update
     
@@ -43,42 +43,45 @@ public class nightmareMove : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        HandleHeight();
-       if(leverLeft.grabbed == true)
+        /*HandleHeight();
+      
        { 
            CalculateMovement(); //set to only work when left stick grabbed
-       }
+       }*/
        if(leverRight.grabbed == true)
        {
-           Debug.Log("rightgrabbed");
+           
         SnapRotation();    //set to only work when right stick is grabbed
        }
     }
     private void CalculateMovement()
     {
-        //Figure out movement orientation
+        /*//Figure out movement orientation
         Quaternion orientation = CalculateOrientation();
         Vector3 movement = Vector3.zero;
 
         //If not moving
-        if(m_MoveValue.axis.magnitude == 0)
-            m_Speed = 0;
-            Debug.Log("not moving");
+        if(leverLeft.grabbed == true)
+        {
+            if(m_MoveValue.axis.magnitude == 0)
+                m_Speed = 0;
+                
         
-        if(m_MoveValue.axis.magnitude > deadzone)
+            if(m_MoveValue.axis.magnitude > deadzone)
             //Add, clamp
-            m_Speed += m_MoveValue.axis.magnitude * m_Sensititvity;
-            m_Speed = Mathf.Clamp(m_Speed,-m_MaxSpeed, m_MaxSpeed);
+                m_Speed += m_MoveValue.axis.magnitude * m_Sensititvity;
+                m_Speed = Mathf.Clamp(m_Speed,-m_MaxSpeed, m_MaxSpeed);
+        }
 
             //Orientation
             movement += orientation * (m_Speed * Vector3.forward)  ;
-             Debug.Log("move it move it");
+             
 
             //Gravity
              movement.y -= m_Gravity * Time.deltaTime;
 
         //Apply
-        m_CharacterController.Move(movement * Time.deltaTime);
+        m_CharacterController.Move(movement * Time.deltaTime);*/
        
     }
 
@@ -92,11 +95,11 @@ public class nightmareMove : MonoBehaviour
         if (Mathf.Abs(m_RightRotatePress.axis.x)  < deadzone)
         {
             rotationSpeed = 0;
-            Debug.Log("not turning");
+            
         }
         if(Mathf.Abs(m_RightRotatePress.axis.x) > deadzone)
         {
-            Debug.Log(m_RightRotatePress.axis.x);
+            
             rotationSpeed = m_RightRotatePress.axis.x * rotateSens;
             rotationSpeed = rotationSpeed * Time.deltaTime * ((damageScriptL.healthPool + damageScriptR.healthPool)/400);
 

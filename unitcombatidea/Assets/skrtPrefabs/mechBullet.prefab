@@ -15,6 +15,8 @@ MonoBehaviour:
   damageScript: {fileID: 0}
   colliderHit: {fileID: 0}
   transformHit: {fileID: 0}
+  bulletPierce: 0
+  bulletDam: 0
 --- !u!1001 &4618006395922196173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36,6 +38,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mechBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900734218214221066, guid: 4c32915cdb1354a4897ab3bc1e925ff7,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6068198270773260278, guid: 4c32915cdb1354a4897ab3bc1e925ff7,
         type: 3}

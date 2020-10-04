@@ -43,7 +43,7 @@ public class armScript : MonoBehaviour
             elbow.localEulerAngles = new Vector3(elbowAngle,0,0); //replace first 0 with elbowAngle  
        if(upperArmAngle < 0)
        {
-           Debug.Log("jjj");
+           
            shoulder.localEulerAngles = new Vector3(shoulderAngle,-upperArmAngle ,0); //replace first 0 with shoulderAngle
        }
        if(!harkenR.rightHarkArmed == true)

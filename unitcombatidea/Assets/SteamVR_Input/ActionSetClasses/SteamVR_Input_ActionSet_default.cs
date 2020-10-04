@@ -225,6 +225,30 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Single lSqueeze
+        {
+            get
+            {
+                return SteamVR_Actions.default_lSqueeze;
+            }
+        }
+        
+        public virtual SteamVR_Action_Single rSqueeze
+        {
+            get
+            {
+                return SteamVR_Actions.default_rSqueeze;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean switchToMelee
+        {
+            get
+            {
+                return SteamVR_Actions.default_switchToMelee;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get
