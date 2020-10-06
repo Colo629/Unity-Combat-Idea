@@ -249,6 +249,30 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean turnOffLeftRight
+        {
+            get
+            {
+                return SteamVR_Actions.default_turnOffLeftRight;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean turnOffUpDown
+        {
+            get
+            {
+                return SteamVR_Actions.default_turnOffUpDown;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean turnOffBoth
+        {
+            get
+            {
+                return SteamVR_Actions.default_turnOffBoth;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get

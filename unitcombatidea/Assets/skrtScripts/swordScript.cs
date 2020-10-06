@@ -45,6 +45,17 @@ public class swordScript : MonoBehaviour
     public bool wentBack;
     public bool slashAttack;
     public bool stabAttack;
+    public bool gettingSpawned;
+    public bool gettingDespawned;
+    public Transform resetPoint;
+    public SteamVR_Action_Vector2 m_RightRotatePress = null;
+    public float deadzone;
+    public float rotationSpeed;
+    public float rotateSens;
+    public Transform rotateAroundThis;
+    public float elevation;
+    public float changeElevation;
+    public float clampedElevation;
     
 
 
@@ -59,9 +70,19 @@ public class swordScript : MonoBehaviour
    
    void Update()
    {        
+            
+            if(gettingSpawned == true)
+            {
+                gettingSpawnedFR();
+            }
+            if(gettingDespawned == true)
+            {
+                gettingDespawnedFR();
+            }
             if(activateSword == true)
             {
                 fireSolution();
+                //manageElevation();
             }
             if(activateSword == false)
             {
@@ -94,8 +115,32 @@ public class swordScript : MonoBehaviour
                 }
             }
    }
-
-   void rightHandSlash()
+   public void gettingSpawnedFR()
+   {
+    swordHandle.localEulerAngles = new Vector3(0,0,0);
+    rotateRef.localEulerAngles = new Vector3(0,0,0);
+    hannibalsGambit.localEulerAngles = new Vector3(0,-90f,0);
+    clampedElevation = 0;
+    changeElevation = 0;
+    //hannibalsGambit.position = new Vector3(0,0,0);
+    //swordHandle.position = new Vector3(0,0,0);
+    //rotateRef.position = new Vector3(0,0,0);
+    gettingSpawned = false;
+   }
+   public void gettingDespawnedFR()
+   {
+    swordHandle.localEulerAngles = new Vector3(0,0,0);
+    rotateRef.localEulerAngles = new Vector3(0,0,0);
+    hannibalsGambit.localEulerAngles = new Vector3(0,0,0);
+    clampedElevation = 0;
+    changeElevation = 0;
+    //hannibalsGambit.position = new Vector3(0,0,0);
+    //swordHandle.position = new Vector3(0,0,0);
+    //rotateRef.position = new Vector3(0,0,0);
+    
+    gettingDespawned = false;
+   }
+    void rightHandSlash()
    {
        if(!firstSlash)
        {
@@ -113,7 +158,7 @@ public class swordScript : MonoBehaviour
         {
             if(!setAngle)
             {
-                swordHandle.localEulerAngles = new Vector3(0,0,xValue);
+                swordHandle.localEulerAngles = new Vector3(-clampedElevation * multiplier/5.7f,0,xValue);
                 rotateRef.localEulerAngles = new Vector3(-zValue,0,0);
                 setAngle = true;
             }
@@ -123,7 +168,7 @@ public class swordScript : MonoBehaviour
         if(!hammerDown)
         {
             setAngle = false;
-            swordHandle.localEulerAngles = new Vector3(0,0,xValue);
+            swordHandle.localEulerAngles = new Vector3(-clampedElevation * multiplier/5.7f,0,xValue);
             rotateRef.localEulerAngles = new Vector3(-zValue,0,0);
         }
         
@@ -156,7 +201,7 @@ public class swordScript : MonoBehaviour
     handleMovement = new Vector3(0,0,0);
     handleMovement = rotateRef.TransformPoint(handleMovement);
     hannibalsGambit.position = handleMovement;
-    swordHandle.localEulerAngles = new Vector3(0,0,0);
+    swordHandle.localEulerAngles = new Vector3(-clampedElevation * multiplier/5.7f,0,0);
     firstSlash = true;
    }
 
@@ -189,11 +234,11 @@ public class swordScript : MonoBehaviour
             wentBack = true;
             cocked = true;
         }
-        if(leverR.output.z <= 0.1f)
+        if(leverR.output.z <= 0.17f)
         {
             if(cocked == true)
             {
-                if(rightMechTrigger.axis >= 0.90f)
+                if(rightMechTrigger.axis >= 0.90f & !stabSwitch)
                 {
                     slashAttack = true;
                     firing = true;
@@ -237,11 +282,28 @@ public class swordScript : MonoBehaviour
         }
     }
     
-    
+    public void manageElevation()
+    {
+        if(Mathf.Abs(m_RightRotatePress.axis.x) < deadzone & Mathf.Abs(m_RightRotatePress.axis.y) > deadzone)
+        {  
+            rotationSpeed = m_RightRotatePress.axis.y * rotateSens;
+            rotationSpeed = rotationSpeed * Time.deltaTime;
+            changeElevation += rotationSpeed; 
+            clampedElevation = Mathf.Clamp(changeElevation,-1,1);
+            if(changeElevation > 1)
+            {
+                changeElevation = 1f;
+            }
+            if(changeElevation < -1)
+            {
+                changeElevation = -1f;
+            }
+        }
+    }
     public void stabSwitchProtocol()
    {
       // if(leverR.output.z <= 0.08f & leverR.output.z >= 0.06f)
-      if(leverR.output.z <= 0.095f & leverR.output.z >= 0.04f)
+      if(leverR.output.z <= 0.16f & leverR.output.z >= 0.02f)
        {
         if(rightMechTrigger.axis >= 0.90f)
        {
@@ -279,7 +341,6 @@ public class swordScript : MonoBehaviour
            {  
                if(leverR.output.z >= switchPos & wentBack == true)
                {
-                   Debug.Log("shit's broken");
                     wentBack = false;
                     firstSlash = false;
                     recordSwitch = false;

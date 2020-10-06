@@ -128,6 +128,18 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/turnOffLeftRight",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/turnOffUpDown",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/turnOffBoth",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
