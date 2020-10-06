@@ -154,7 +154,7 @@ public class moveOnly : MonoBehaviour
             {
                 changeElevation = -upDownAngle;
             }
-            commandPlat.localEulerAngles = new Vector3(-clampedElevation,commandPlat.localEulerAngles.y,commandPlat.localEulerAngles.z);
+            rotateAroundThis2.localEulerAngles = new Vector3(-clampedElevation,rotateAroundThis2.localEulerAngles.y,rotateAroundThis2.localEulerAngles.z);
         }
         //if(Mathf.Abs(m_RightRotatePress.axis.y) < deadzone | Mathf.Abs(m_RightRotatePress.axis.x) > deadzone)
         //{   

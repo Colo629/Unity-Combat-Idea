@@ -158,7 +158,7 @@ public class swordScript : MonoBehaviour
         {
             if(!setAngle)
             {
-                swordHandle.localEulerAngles = new Vector3(-clampedElevation * multiplier/5.7f,0,xValue);
+                swordHandle.localEulerAngles = new Vector3(0,0,xValue);
                 rotateRef.localEulerAngles = new Vector3(-zValue,0,0);
                 setAngle = true;
             }
@@ -168,7 +168,7 @@ public class swordScript : MonoBehaviour
         if(!hammerDown)
         {
             setAngle = false;
-            swordHandle.localEulerAngles = new Vector3(-clampedElevation * multiplier/5.7f,0,xValue);
+            swordHandle.localEulerAngles = new Vector3(0,0,xValue);
             rotateRef.localEulerAngles = new Vector3(-zValue,0,0);
         }
         
@@ -201,7 +201,7 @@ public class swordScript : MonoBehaviour
     handleMovement = new Vector3(0,0,0);
     handleMovement = rotateRef.TransformPoint(handleMovement);
     hannibalsGambit.position = handleMovement;
-    swordHandle.localEulerAngles = new Vector3(-clampedElevation * multiplier/5.7f,0,0);
+    swordHandle.localEulerAngles = new Vector3(0,0,0);
     firstSlash = true;
    }
 
