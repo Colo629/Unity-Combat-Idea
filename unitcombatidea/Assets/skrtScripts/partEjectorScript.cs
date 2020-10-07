@@ -7,6 +7,7 @@ public class partEjectorScript : MonoBehaviour
 
     public GameObject ejectedPart;
     public bool leverPulled = false;
+    public ejectorLeverScript ejectorScript;
     public bool ejected;
     public float pushSpeed = 10f;
     // Start is called before the first frame update

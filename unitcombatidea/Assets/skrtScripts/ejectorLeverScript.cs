@@ -13,6 +13,7 @@ public bool grabbed;
 public SteamVR_Action_Boolean grabObject;
 public Transform rotateRef;
 public partEjectorScript partEjector;
+public bool ejectThis;
     
   
   
@@ -41,6 +42,7 @@ public partEjectorScript partEjector;
             {
                 Debug.Log("ka-boom");
                 partEjector.leverPulled = true;
+                ejectThis = true;
                 
             }
         }

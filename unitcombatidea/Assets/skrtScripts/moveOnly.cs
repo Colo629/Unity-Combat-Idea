@@ -31,6 +31,11 @@ public class moveOnly : MonoBehaviour
     public float clampedElevation;
     public float rotateGambit;
     public float upDownAngle;
+    public bool airborne;
+    public bool airborneReset;
+    public bool firstAirborne;
+    public Transform uiLevel;
+    public Transform levelHolder;
 
     // call rigidbody.velocity (vector3)
     
@@ -47,6 +52,7 @@ public class moveOnly : MonoBehaviour
         //{
             rotateCalculations();
         //}
+        airborneCalculations();
         if(leverLeft.grabbed == true)
         {
             if(!firstGrab)
@@ -57,7 +63,15 @@ public class moveOnly : MonoBehaviour
                 click1 = false; //could be a mistake
                 firstGrab = true;
             }
-            if(!triggerCC)
+            if(!airborneReset)
+            {
+                firstCC = false;
+                triggerCC = false;
+                backsway = false;
+                click1 = false;
+                airborneReset = true;
+            }
+            if(!triggerCC & !airborne)
             {
                 Vector3 localMechDirection = commandPlat.InverseTransformDirection(mechBody.velocity);
                 Vector2 mechDirectionV2 = new Vector2(localMechDirection.x,localMechDirection.z);
@@ -99,7 +113,7 @@ public class moveOnly : MonoBehaviour
                 }               
             }
                  
-            if(triggerCC == true & !firstCC )
+            if(triggerCC == true & !firstCC & !airborne)
             {
                 Vector3 localMechDirection = commandPlat.InverseTransformDirection(mechBody.velocity);
                 Vector2 mechDirectionV2 = new Vector2(localMechDirection.x,localMechDirection.z);
@@ -109,8 +123,17 @@ public class moveOnly : MonoBehaviour
                 triggerCC = true;
                 firstCC = true;
             }
+            if(!firstAirborne & airborne)
+            {
+               // Vector3 localMechDirection = commandPlat.InverseTransformDirection(mechBody.velocity);
+                //Vector2 mechDirectionV2 = new Vector2(localMechDirection.x,localMechDirection.z);
+               // Vector2 newDirection = Vector2.Lerp(mechDirectionV2,(m_MoveValue.axis * maxSpeed),(0.8f * Time.deltaTime));
+                //Vector3 newDirectionV3 = new Vector3(newDirection.x,mechBody.velocity.y,newDirection.y);
+                mechBody.velocity = commandPlat.TransformDirection(mechBody.velocity);
+                firstAirborne = true;
+            }
         }
-        if(leverLeft.grabbed == false & !cruiseControl)
+        if(leverLeft.grabbed == false & !cruiseControl & !airborne)
         {
             Vector3 localMechDirection = commandPlat.InverseTransformDirection(mechBody.velocity);
             Vector2 mechDirectionV2 = new Vector2(localMechDirection.x,localMechDirection.z);
@@ -126,6 +149,20 @@ public class moveOnly : MonoBehaviour
         
 
 
+    }
+    public void airborneCalculations()
+    {
+        if(airborne == true)
+        {
+            airborneReset = false;
+            mechBody.useGravity = true;
+        }
+        if(airborne == false)
+        {
+            firstAirborne = true;
+            airborneReset = true;
+            mechBody.useGravity = false;
+        }
     }
     public void rotateCalculations()
     {
@@ -155,9 +192,11 @@ public class moveOnly : MonoBehaviour
                 changeElevation = -upDownAngle;
             }
             rotateAroundThis2.localEulerAngles = new Vector3(-clampedElevation,rotateAroundThis2.localEulerAngles.y,rotateAroundThis2.localEulerAngles.z);
+            //evelHolder.localEulerAngles = rotateAroundThis2.localEulerAngles;
+
         }
-        //if(Mathf.Abs(m_RightRotatePress.axis.y) < deadzone | Mathf.Abs(m_RightRotatePress.axis.x) > deadzone)
-        //{   
+        if(Mathf.Abs(m_RightRotatePress.axis.y) < deadzone | Mathf.Abs(m_RightRotatePress.axis.x) > deadzone)
+        {   
             //rotationSpeed = m_RightRotatePress.axis.x * rotateSens;
            // rotationSpeed = rotationSpeed * Time.deltaTime;
             Vector3 mechAngularVelocity = mechBody.angularVelocity;
@@ -165,7 +204,6 @@ public class moveOnly : MonoBehaviour
             Vector2 newAngularVelocity = Vector2.Lerp(mechAngularVelocityV2,(new Vector2(m_RightRotatePress.axis.x,0) * maxRotation),(0.8f * Time.deltaTime));
             Vector3 newAngularVelocityV3 = new Vector3(newAngularVelocity.x,0,newAngularVelocity.y);
             transform.RotateAround(rotateAroundThis.position, Vector3.up, newAngularVelocityV3.x); 
-            Debug.Log(mechBody.angularVelocity);
             //mechBody.angularVelocity = newAngularVelocityV3;
             
             //VVVVVVVVVVVV    REFERENCE ONLY REFERENCE ONLY REFERENCE ONLY REFERENCE ONLY VVVVVVVVVVVVVVVVVVVVVVVVVVVVV
@@ -174,6 +212,6 @@ public class moveOnly : MonoBehaviour
             Vector2 newDirection = Vector2.Lerp(mechDirectionV2,(m_MoveValue.axis * maxSpeed),(0.8f * Time.deltaTime));
             Vector3 newDirectionV3 = new Vector3(newDirection.x,0,newDirection.y);
             mechBody.velocity = commandPlat.TransformDirection(newDirectionV3);*/
-        //}  
+        }  
     }
 }
