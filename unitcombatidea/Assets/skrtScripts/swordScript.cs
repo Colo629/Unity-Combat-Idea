@@ -15,6 +15,8 @@ public class swordScript : MonoBehaviour
     public Vector3 relativePosition;
     public Transform rotateRef;*/
     public bool rightHand;
+    public Collider stabCollider;
+    public Collider slashCollider;
     public leverScript leverR;
     public Transform swordHandle;
     public Transform mech;
@@ -56,6 +58,7 @@ public class swordScript : MonoBehaviour
     public float elevation;
     public float changeElevation;
     public float clampedElevation;
+    
     
 
 
@@ -103,7 +106,7 @@ public class swordScript : MonoBehaviour
             }
             if(leverR.grabbed == true & activateSword == true)
             {
-                stabSwitchProtocol();
+                //stabSwitchProtocol();
             
                 if(!stabSwitch)
                 {
@@ -111,7 +114,7 @@ public class swordScript : MonoBehaviour
                 }
                 if(stabSwitch)
                 {
-                    rightHandStab();
+                   // rightHandStab();
                 }
             }
    }
@@ -122,6 +125,8 @@ public class swordScript : MonoBehaviour
     hannibalsGambit.localEulerAngles = new Vector3(0,-90f,0);
     clampedElevation = 0;
     changeElevation = 0;
+    slashCollider.enabled = true;
+    stabCollider.enabled = true;
     //hannibalsGambit.position = new Vector3(0,0,0);
     //swordHandle.position = new Vector3(0,0,0);
     //rotateRef.position = new Vector3(0,0,0);
@@ -134,6 +139,8 @@ public class swordScript : MonoBehaviour
     hannibalsGambit.localEulerAngles = new Vector3(0,0,0);
     clampedElevation = 0;
     changeElevation = 0;
+    slashCollider.enabled = false;
+    stabCollider.enabled = false;
     //hannibalsGambit.position = new Vector3(0,0,0);
     //swordHandle.position = new Vector3(0,0,0);
     //rotateRef.position = new Vector3(0,0,0);
@@ -150,11 +157,11 @@ public class swordScript : MonoBehaviour
         float yValue = (leverR.output.y * multiplier); //lateral movement
         float xValue = (leverR.output.x * (multiplier/1.1f)) - 60f; //rotate
         
-        if(rightMechTrigger.axis <=0.89f)
+        if(rightMechTrigger.axis <=0.49f)
         {
             hammerDown = false;
         }
-        if(hammerDown == true & rightMechTrigger.axis >= 0.90f)
+        if(hammerDown == true & rightMechTrigger.axis >= 0.5f)
         {
             if(!setAngle)
             {
@@ -215,7 +222,7 @@ public class swordScript : MonoBehaviour
 
     public void fireSolution()
     {
-        if(rightMechTrigger.axis < 0.90f & !stabSwitch)
+        if(rightMechTrigger.axis < 0.5f & !stabSwitch)
         {
             //stabswitch = true means we're stabbing 
             cocked = false;
@@ -225,7 +232,7 @@ public class swordScript : MonoBehaviour
             stabAttack = false;
             slashAttack = false;
         }
-        if(leverR.output.z > 0.20f & rightMechTrigger.axis >= 0.90f)
+        if(leverR.output.z > 0.20f & rightMechTrigger.axis >= 0.5f)
         {
             cocked = true;
         }
@@ -234,11 +241,11 @@ public class swordScript : MonoBehaviour
             wentBack = true;
             cocked = true;
         }
-        if(leverR.output.z <= 0.17f)
+        if(leverR.output.z <= 0.16f)  //damage arc on the slash
         {
             if(cocked == true)
             {
-                if(rightMechTrigger.axis >= 0.90f & !stabSwitch)
+                if(rightMechTrigger.axis >= 0.5f & !stabSwitch)
                 {
                     slashAttack = true;
                     firing = true;
@@ -261,7 +268,7 @@ public class swordScript : MonoBehaviour
                 {
                     hammerDown = true;
                 }
-                if(rightMechTrigger.axis >= 0.90f)
+                if(rightMechTrigger.axis >= 0.5f)
                 {
                     hammerDown = true;
                 }  
@@ -305,7 +312,7 @@ public class swordScript : MonoBehaviour
       // if(leverR.output.z <= 0.08f & leverR.output.z >= 0.06f)
       if(leverR.output.z <= 0.16f & leverR.output.z >= 0.02f)
        {
-        if(rightMechTrigger.axis >= 0.90f)
+        if(rightMechTrigger.axis >= 0.5f)
        {
            if(!doublePull)
            {

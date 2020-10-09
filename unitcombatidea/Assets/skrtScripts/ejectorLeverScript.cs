@@ -14,6 +14,7 @@ public SteamVR_Action_Boolean grabObject;
 public Transform rotateRef;
 public partEjectorScript partEjector;
 public bool ejectThis;
+public bool firstBoom;
     
   
   
@@ -38,11 +39,12 @@ public bool ejectThis;
             Vector3 handPosition = transform.InverseTransformPoint(hand.transform.position).normalized;
             float leverAngle = Mathf.Atan2(handPosition.z,handPosition.y) * (360/(2 * Mathf.PI));
             rotateRef.localEulerAngles = new Vector3(Mathf.Clamp(leverAngle,-45,0),0,0);
-            if(leverAngle < -44)
+            if(leverAngle < -44 & !firstBoom)
             {
                 Debug.Log("ka-boom");
-                partEjector.leverPulled = true;
                 ejectThis = true;
+                firstBoom = true;
+                partEjector.leverPulled = true;
                 
             }
         }

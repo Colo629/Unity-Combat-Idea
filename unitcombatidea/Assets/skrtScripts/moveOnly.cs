@@ -31,27 +31,36 @@ public class moveOnly : MonoBehaviour
     public float clampedElevation;
     public float rotateGambit;
     public float upDownAngle;
-    public bool airborne;
+    public bool airborne = true;
     public bool airborneReset;
     public bool firstAirborne;
     public Transform uiLevel;
     public Transform levelHolder;
+    public ejectorLeverScript els;
+    public bool spawning;
+    public bool doubleOnce;
+    public Vector3 newDirectionV3Value;
 
     // call rigidbody.velocity (vector3)
     
     // Start is called before the first frame update
     void Start()
     {
-        
+       mechBody.useGravity = true;
     }
 
     // Update is called once per frame
     void Update()
     { 
+        if(spawning)
+        {
+            mechBody.useGravity = false;
+        }
+        armorChanges();
         //if(leverRight.grabbed == true)
-        //{
+        {
             rotateCalculations();
-        //}
+        }
         airborneCalculations();
         if(leverLeft.grabbed == true)
         {
@@ -79,6 +88,7 @@ public class moveOnly : MonoBehaviour
                 Vector3 newDirectionV3 = new Vector3(newDirection.x,0,newDirection.y);
                 mechBody.velocity = commandPlat.TransformDirection(newDirectionV3);
                 cruiseControl = false;
+                newDirectionV3Value = newDirectionV3;
                 if(leftMechTrigger.axis >= 0.93f)
                 {
                     if(!click1)
@@ -120,6 +130,7 @@ public class moveOnly : MonoBehaviour
                 Vector2 newDirection = Vector2.Lerp(mechDirectionV2,(m_MoveValue.axis * maxSpeed),(0.8f * Time.deltaTime));
                 Vector3 newDirectionV3 = new Vector3(newDirection.x,0,newDirection.y);
                 mechBody.velocity = commandPlat.TransformDirection(newDirectionV3);
+                newDirectionV3Value = newDirectionV3;
                 triggerCC = true;
                 firstCC = true;
             }
@@ -140,6 +151,7 @@ public class moveOnly : MonoBehaviour
             Vector2 newDirection = Vector2.Lerp(mechDirectionV2,(m_MoveValue.axis * maxSpeed),(0.8f * Time.deltaTime));
             Vector3 newDirectionV3 = new Vector3(newDirection.x,0,newDirection.y);
             mechBody.velocity = commandPlat.TransformDirection(newDirectionV3);
+            newDirectionV3Value = newDirectionV3;
             firstGrab = false;
             triggerCC = false;
             cruiseControl = true;
@@ -150,14 +162,22 @@ public class moveOnly : MonoBehaviour
 
 
     }
+    public void armorChanges()
+    {
+        if(els.ejectThis == true & !doubleOnce)
+        {
+            maxSpeed *= 1.5f;
+            doubleOnce = true;
+        }
+    }
     public void airborneCalculations()
     {
         if(airborne == true)
         {
-            airborneReset = false;
             mechBody.useGravity = true;
+            airborneReset = false;
         }
-        if(airborne == false)
+        if(airborne == false & spawning == true)
         {
             firstAirborne = true;
             airborneReset = true;
@@ -166,35 +186,23 @@ public class moveOnly : MonoBehaviour
     }
     public void rotateCalculations()
     {
-        // if(Mathf.Abs(m_RightRotatePress.axis.x)  > deadzone)
-        {
-            //rotationSpeed = 0;  
-        }
-       //  if (m_LeftRotatePress.GetStateDown(SteamVR_Input_Sources.RightHand))
-        //snapValue = -Mathf.Abs(m_RotateIncrement);
-    
-        /*if (Mathf.Abs(m_RightRotatePress.axis.y)  > deadzone)
-        {
-            rotationSpeed = 0; 
-        }*/
-        if(Mathf.Abs(m_RightRotatePress.axis.x) < deadzone & Mathf.Abs(m_RightRotatePress.axis.y) > deadzone)
+       /* if(Mathf.Abs(m_RightRotatePress.axis.x) < deadzone & Mathf.Abs(m_RightRotatePress.axis.y) > deadzone)
         {  
             rotationSpeed = m_RightRotatePress.axis.y * rotateSens;
             rotationSpeed = rotationSpeed * Time.deltaTime;
             changeElevation += rotationSpeed; 
             clampedElevation = Mathf.Clamp(changeElevation,-upDownAngle,upDownAngle);
-            if(changeElevation > upDownAngle)
+            if(changeElevation >= upDownAngle)
             {
                 changeElevation = upDownAngle;
             }
-            if(changeElevation < -upDownAngle)
+            if(changeElevation <= -upDownAngle)
             {
                 changeElevation = -upDownAngle;
             }
             rotateAroundThis2.localEulerAngles = new Vector3(-clampedElevation,rotateAroundThis2.localEulerAngles.y,rotateAroundThis2.localEulerAngles.z);
-            //evelHolder.localEulerAngles = rotateAroundThis2.localEulerAngles;
 
-        }
+        }*/
         if(Mathf.Abs(m_RightRotatePress.axis.y) < deadzone | Mathf.Abs(m_RightRotatePress.axis.x) > deadzone)
         {   
             //rotationSpeed = m_RightRotatePress.axis.x * rotateSens;
@@ -203,7 +211,7 @@ public class moveOnly : MonoBehaviour
             Vector2 mechAngularVelocityV2 = new Vector2(mechAngularVelocity.x,mechAngularVelocity.z); //might be not x and z
             Vector2 newAngularVelocity = Vector2.Lerp(mechAngularVelocityV2,(new Vector2(m_RightRotatePress.axis.x,0) * maxRotation),(0.8f * Time.deltaTime));
             Vector3 newAngularVelocityV3 = new Vector3(newAngularVelocity.x,0,newAngularVelocity.y);
-            transform.RotateAround(rotateAroundThis.position, Vector3.up, newAngularVelocityV3.x); 
+            transform.RotateAround(rotateAroundThis.position, Vector3.up, (m_RightRotatePress.axis.x * maxRotation)); 
             //mechBody.angularVelocity = newAngularVelocityV3;
             
             //VVVVVVVVVVVV    REFERENCE ONLY REFERENCE ONLY REFERENCE ONLY REFERENCE ONLY VVVVVVVVVVVVVVVVVVVVVVVVVVVVV

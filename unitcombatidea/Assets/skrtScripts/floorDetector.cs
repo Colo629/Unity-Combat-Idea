@@ -24,8 +24,8 @@ public class floorDetector : MonoBehaviour
         
             if(defineFoot.tag == "foot")
             {
-                Debug.Log("grounded");
                 moveScript.airborne = false;
+                moveScript.spawning = true;
             }
     }
 
@@ -33,8 +33,8 @@ public class floorDetector : MonoBehaviour
     {
             if(defineFoot.tag == "foot")
             {
-                Debug.Log("grounded2");
                 moveScript.airborne = false;
+                moveScript.spawning = true;
             }
            
     }
@@ -42,8 +42,8 @@ public class floorDetector : MonoBehaviour
     {
             if(defineFoot.tag == "foot")
             {
-                Debug.Log("airborne");
                 moveScript.airborne = true;
+                moveScript.spawning = true;
             }
     }
 

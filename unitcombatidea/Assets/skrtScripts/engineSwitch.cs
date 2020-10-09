@@ -38,7 +38,6 @@ public engineScript engineScript;
             rotateRef.localEulerAngles = new Vector3(Mathf.Clamp(leverAngle,-45,0),0,0);
             if(leverAngle < -44)
             {
-                Debug.Log("ka-boom");
                 engineScript.engineOn = true;
                 
             }

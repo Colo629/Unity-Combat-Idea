@@ -14,11 +14,7 @@ public class dropPodScript : MonoBehaviour
     public bool firstPop;
     public GameObject dropPodBottom;
     public Rigidbody mechRigidBody;
-    public partEjectorScript frontWall;
-    public partEjectorScript leftWall;
-    public partEjectorScript rightWall;
-    public partEjectorScript backWall;
-    public partEjectorScript roof;
+    public leverLessEjection leverLessEjection;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,16 +44,10 @@ public class dropPodScript : MonoBehaviour
             {
                 Debug.Log("grounded");
                 popDrop = true;
-                
-
             }
     }
     public void flipEjectors()
     {
-        roof.leverPulled = true;
-        frontWall.leverPulled = true;
-        leftWall.leverPulled = true;
-        rightWall.leverPulled = true;
-        backWall.leverPulled = true;
+        leverLessEjection.ejectThis = true;
     }
 }

@@ -10,6 +10,7 @@ public class leverScript : MonoBehaviour
     // Start is called before the first frame update
     public GameObject reference;
     public GameObject hand;
+    public GameObject handParent;
     public bool grabbed;
     public SteamVR_Action_Boolean grabObject;
     public Vector3 output;
@@ -55,21 +56,22 @@ public class leverScript : MonoBehaviour
         {
             if(!mirror)
             {
+
             //rotate reference?
                 armTriggerR = true;
                 output = Vector3.ClampMagnitude(reference.transform.InverseTransformPoint(hand.transform.position),multiplier); //makes shit not able to rotate among other stuff
                 output = new Vector3(0,Mathf.Clamp(output.y,-0.05f,multiplier/4),Mathf.Clamp(output.z,0,multiplier/2)); //Mathf.Clamp(output.x,-multiplier/2,0.25f
-            if(hand.transform.localEulerAngles.z < 180)
+            if(handParent.transform.localEulerAngles.z < 180)
                 {
-                output.x = (hand.transform.localEulerAngles.z )/210;
+                output.x = (handParent.transform.localEulerAngles.z )/210;
                 }
-            if(hand.transform.localEulerAngles.z > 180)
+            if(handParent.transform.localEulerAngles.z > 180)
                 {
-                    output.x = ((hand.transform.localEulerAngles.z - 365))/210;
+                    output.x = ((handParent.transform.localEulerAngles.z - 365))/210;
                 }
            // Debug.Log(hand.transform.localEulerAngles);
             output.x = Mathf.Clamp(output.x,-0.15f,0.5f);
-            transform.rotation = hand.transform.rotation;
+            transform.rotation = hand.transform.rotation;   //to change model rotation modify this
             }
 
             if(mirror)
@@ -78,13 +80,13 @@ public class leverScript : MonoBehaviour
                             //rotate reference?
                     output = Vector3.ClampMagnitude(reference.transform.InverseTransformPoint(hand.transform.position),multiplier); //makes shit not able to rotate among other stuff
                     output = new Vector3(0,Mathf.Clamp(output.y,-multiplier/4,0.05f),Mathf.Clamp(output.z,0,multiplier)); //Mathf.Clamp(output.x,-multiplier/2,0.25f
-                if(hand.transform.localEulerAngles.z < 180)
+                if(handParent.transform.localEulerAngles.z < 180)
                 {
-                    output.x = (hand.transform.localEulerAngles.z + 93.7f)/210;
+                    output.x = (handParent.transform.localEulerAngles.z + 93.7f)/210;
                 }
-                    if(hand.transform.localEulerAngles.z > 180)
+                    if(handParent.transform.localEulerAngles.z > 180)
                 {
-                    output.x = ((hand.transform.localEulerAngles.z - 365) + 93.7f)/210;
+                    output.x = ((handParent.transform.localEulerAngles.z - 365) + 93.7f)/210;
                 }
                 // Debug.Log(hand.transform.localEulerAngles);
                 output.x = Mathf.Clamp(output.x,-0.5f,1);

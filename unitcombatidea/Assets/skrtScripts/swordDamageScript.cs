@@ -14,7 +14,9 @@ public class swordDamageScript : MonoBehaviour
     public float stabDamage = 0;
     public float stabPierce = 0;
     public bool calculated;
-
+    public moveOnly ms;
+    public bool resetAttack;
+    public ParticleSystem stabSparks;
     void OnTriggerEnter(Collider gumDumb)
     {
         if(swordScript.firing == true)
@@ -23,10 +25,12 @@ public class swordDamageScript : MonoBehaviour
             {
                 calculateSlashDamage(gumDumb);
             }
-            if(swordScript.stabAttack == true & !calculated)
-            {
-                calculateStabDamage(gumDumb);
-            }
+            
+        }
+        if(swordScript.slashAttack == false & !calculated & ms.newDirectionV3Value.z >= 9.0f)
+        {
+            calculateStabDamage(gumDumb);
+            Debug.Log("radarada");
         }
     }
     void OnTriggerStay(Collider gumDumb)
@@ -39,10 +43,11 @@ public class swordDamageScript : MonoBehaviour
                 {
                     calculateSlashDamage(gumDumb);
                 }
-                if(swordScript.stabAttack == true)
-                {
-                    calculateStabDamage(gumDumb);
-                }
+            }
+        if(swordScript.slashAttack == false & ms.newDirectionV3Value.z >= 9.0f & !calculated)
+            {
+                calculateStabDamage(gumDumb);
+                Debug.Log("radarada");
             }
         }
     }
@@ -55,12 +60,18 @@ public class swordDamageScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(swordScript.slashAttack == false & swordScript.stabAttack == false)
+        if(swordScript.slashAttack == false & swordScript.stabAttack == false & calculated == true)
         {
-            calculated = false;
+            StartCoroutine(attackCooldown());
         }
     }
-
+       IEnumerator attackCooldown()
+    {         
+        calculated = true;
+        yield return new WaitForSeconds(2);
+        calculated = false;
+        stabSparks.Stop(stabSparks);
+    }
     public void calculateSlashDamage(Collider collisionData)
     {   
         
@@ -79,8 +90,9 @@ public class swordDamageScript : MonoBehaviour
     
     public void calculateStabDamage(Collider collisionData)
     {
-       
+        stabSparks.Play();
         damageScript = collisionData.gameObject.GetComponent<damageScript>();
+        FindObjectOfType<AudioManager>().Play("swordStabSound");
         if(stabPierce >= damageScript.penValue)
         {
             
@@ -90,6 +102,7 @@ public class swordDamageScript : MonoBehaviour
         {
             damageScript.healthPool -= (stabDamage/5);
         }
+
         calculated = true;
     }
 }
