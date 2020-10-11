@@ -5,6 +5,7 @@ using Valve.VR;
 
 public class moveOnly : MonoBehaviour
 {
+    public MechStatusHolder msh;
     public SteamVR_Action_Vector2 m_MoveValue = null;
     public float maxSpeed;
     public float maxRotation;
@@ -40,6 +41,7 @@ public class moveOnly : MonoBehaviour
     public bool spawning;
     public bool doubleOnce;
     public Vector3 newDirectionV3Value;
+    public bool outOfFuel;
 
     // call rigidbody.velocity (vector3)
     
@@ -52,6 +54,10 @@ public class moveOnly : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
+        if(Mathf.Abs(newDirectionV3Value.x) > 0.1 | Mathf.Abs(newDirectionV3Value.y) > 0.1 | Mathf.Abs(newDirectionV3Value.z) > 0.1)
+        {
+            FuelConsumption();
+        }
         if(spawning)
         {
             mechBody.useGravity = false;
@@ -62,7 +68,7 @@ public class moveOnly : MonoBehaviour
             rotateCalculations();
         }
         airborneCalculations();
-        if(leverLeft.grabbed == true)
+        if(leverLeft.grabbed == true )
         {
             if(!firstGrab)
             {
@@ -80,7 +86,7 @@ public class moveOnly : MonoBehaviour
                 click1 = false;
                 airborneReset = true;
             }
-            if(!triggerCC & !airborne)
+            if(!triggerCC & !airborne & !outOfFuel)
             {
                 Vector3 localMechDirection = commandPlat.InverseTransformDirection(mechBody.velocity);
                 Vector2 mechDirectionV2 = new Vector2(localMechDirection.x,localMechDirection.z);
@@ -123,7 +129,7 @@ public class moveOnly : MonoBehaviour
                 }               
             }
                  
-            if(triggerCC == true & !firstCC & !airborne)
+            if(triggerCC == true & !firstCC & !airborne & !outOfFuel)
             {
                 Vector3 localMechDirection = commandPlat.InverseTransformDirection(mechBody.velocity);
                 Vector2 mechDirectionV2 = new Vector2(localMechDirection.x,localMechDirection.z);
@@ -143,8 +149,17 @@ public class moveOnly : MonoBehaviour
                 mechBody.velocity = commandPlat.TransformDirection(mechBody.velocity);
                 firstAirborne = true;
             }
+            if(outOfFuel == true)
+            {
+                Vector3 localMechDirection = commandPlat.InverseTransformDirection(mechBody.velocity);
+                Vector2 mechDirectionV2 = new Vector2(localMechDirection.x,localMechDirection.z);
+                Vector2 newDirection = Vector2.Lerp(mechDirectionV2,(m_MoveValue.axis * 0f),(0.8f * Time.deltaTime));
+                Vector3 newDirectionV3 = new Vector3(newDirection.x,0,newDirection.y);
+                mechBody.velocity = commandPlat.TransformDirection(newDirectionV3);
+                newDirectionV3Value = newDirectionV3;
+            }
         }
-        if(leverLeft.grabbed == false & !cruiseControl & !airborne)
+        if(leverLeft.grabbed == false & !cruiseControl & !airborne & !outOfFuel)
         {
             Vector3 localMechDirection = commandPlat.InverseTransformDirection(mechBody.velocity);
             Vector2 mechDirectionV2 = new Vector2(localMechDirection.x,localMechDirection.z);
@@ -156,11 +171,32 @@ public class moveOnly : MonoBehaviour
             triggerCC = false;
             cruiseControl = true;
         }
+         if(outOfFuel == true)
+            {
+                Vector3 localMechDirection = commandPlat.InverseTransformDirection(mechBody.velocity);
+                Vector2 mechDirectionV2 = new Vector2(localMechDirection.x,localMechDirection.z);
+                Vector2 newDirection = Vector2.Lerp(mechDirectionV2,(m_MoveValue.axis * 0f),(0.8f * Time.deltaTime));
+                Vector3 newDirectionV3 = new Vector3(newDirection.x,0,newDirection.y);
+                mechBody.velocity = commandPlat.TransformDirection(newDirectionV3);
+                newDirectionV3Value = newDirectionV3;
+            }
         
 
         
 
 
+    }
+    public void FuelConsumption()
+    {
+       float fuelMovement = newDirectionV3Value.magnitude;
+       msh.fuelCount -= (fuelMovement * Time.deltaTime);
+       if(outOfFuel)
+       {
+            firstCC = false;
+            triggerCC = false;
+            backsway = false;
+            click1 = false; //could be a mistake
+       }
     }
     public void armorChanges()
     {
