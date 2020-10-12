@@ -14,6 +14,30 @@ public class MechStatusHolder : MonoBehaviour
     public float speedCounter;
     public bool flippyDippy;
     public bool requip;
+    public float leftArmArmorCount;
+    public float rightArmArmorCount;
+    public float leftLegArmorCount;
+    public float rightLegArmorCount;
+    public float leftArmArmorMax;
+    public float rightArmArmorMax;
+    public float leftLegArmorMax;
+    public float rightLegArmorMax;
+    public float leftArmHp;
+    public float leftArmMaxHp;
+    public float rightArmHp;
+    public float rightArmMaxHp;
+    public float leftLegHp;
+    public float leftLegMaxHp;
+    public float rightLegHp;
+    public float rightLegMaxHp;
+    public float headHp;
+    public float headMaxHp;
+    public float torsoHp;
+    public float torsoMaxHp;
+    public Collider leftArmorA;
+    public Collider rightArmorA;
+    public Collider leftArmorL;
+    public Collider rightArmorL;
     
 
     // Start is called before the first frame update
@@ -25,6 +49,10 @@ public class MechStatusHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(ammoCount < 0)
+        {
+            ammoCount = 0;
+        }
         if(requip == true)
         {
             requipProtocol();
@@ -49,6 +77,19 @@ public class MechStatusHolder : MonoBehaviour
         fuelCount = maxFuel;
         ammoCount = maxAmmo;
         magCount = maxMags;
-        requip = false;
+        leftArmArmorCount = leftArmArmorMax;
+        rightArmArmorCount = rightArmArmorMax;
+        leftLegArmorCount = leftLegArmorMax;
+        rightLegArmorCount = rightLegArmorMax;
+        leftArmHp = leftArmMaxHp;
+        rightArmHp = rightArmMaxHp;
+        leftLegHp = leftLegMaxHp;
+        rightLegHp = rightLegMaxHp;
+        torsoHp = torsoMaxHp;
+        leftArmorA.enabled = true;
+        rightArmorA.enabled = true;
+        leftArmorL.enabled = true;
+        rightArmorL.enabled = true; 
+        requip = false;   
     }
 }

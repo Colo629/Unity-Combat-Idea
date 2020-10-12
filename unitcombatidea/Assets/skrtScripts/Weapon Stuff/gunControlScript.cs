@@ -5,6 +5,7 @@ using Valve.VR;
 
 public class gunControlScript : MonoBehaviour
 {
+    public bool wentBack;
     public bool rightHand;
     public leverScript leverR;
     public leverScript leverL;
@@ -23,7 +24,7 @@ public class gunControlScript : MonoBehaviour
     public Vector3 handleMovement;
     public bool setAngle = false;
     public bool hammerDown = false;
-    public float ammoPool = 0;
+    public float magCount = 0;
     public float magSize = 0;
     public bool triggerPulled;
     private IEnumerator coroutine;
@@ -56,6 +57,10 @@ public class gunControlScript : MonoBehaviour
     public bool stopRunning;
     public MechStatusHolder msh;
     public bool lockReload;
+    public bool fullAuto;
+    public bool pump;
+    public bool needPump;
+    public AudioManager audioManager;
     
     //vvvvv get rid of when learn to use for loops lmao vvvv
     public Renderer r19;
@@ -81,6 +86,9 @@ public class gunControlScript : MonoBehaviour
     void Start()
     {
         msh.ammoCount = magSize;
+        msh.maxAmmo = magSize;
+        msh.maxMags = magCount;
+        msh.magCount = magCount;
     }
 
     // Update is called once per frame
@@ -117,12 +125,27 @@ public class gunControlScript : MonoBehaviour
                 if(leverR.grabbed == true)
                 {
                     controlGunProtocol();
-                    if(triggerPulled)
-                        {
-                            fireGunProtocol();
-                        }
+                    if(triggerPulled & fullAuto)
+                    {
+                        fireFullAutoProtocol();
+                    }
+                    if(triggerPulled & !firstShot & !pump)
+                    {
+                        fireSingleShotProtocol();
+                    }
+                    if(triggerPulled & pump & !needPump)
+                    {
+                        firePumpProtocol();
+                    }
                 }
-                reloadGunProtocol();
+                if(!pump)
+                {
+                    reloadFullAutoProtocol();
+                }
+                if(pump)
+                {
+                    reloadPumpProtocol();
+                }
             }
             if(switchToMelee.GetStateDown(rightHand2) == true)
             {
@@ -155,7 +178,16 @@ public class gunControlScript : MonoBehaviour
             }
         }
     }
-
+    public void firePumpProtocol()
+    {
+        gS.fireGun();
+        needPump = true;
+    }
+    public void fireSingleShotProtocol()
+    {
+        firstShot = true;
+        gS.fireGun();
+    }
     void triggerSolution()
     {
         if(rightMechTrigger.axis >= 0.93f)
@@ -180,7 +212,7 @@ public class gunControlScript : MonoBehaviour
         rotateRef.localEulerAngles = new Vector3(-zValue,0,0);
     }
 
-    void fireGunProtocol()
+    void fireFullAutoProtocol()
     {
         if(!firstShot)
         {    
@@ -200,10 +232,9 @@ public class gunControlScript : MonoBehaviour
         fired = true;
         gS.fireGun();
     }
-    void reloadGunProtocol()
+    void reloaderGripMovement()
     {
-        // ^^^^ use values for movement of the reloader
-        if(!lockReloader)
+        if(fullAuto)
         {
             float zValue = (leverL.output.z * multiplier/100) - 1.5f; //push/pull
             float yValue = (leverL.output.y * multiplier);
@@ -211,6 +242,91 @@ public class gunControlScript : MonoBehaviour
             handleMovement2 = new Vector3(-0.11f,0.05f,-zValue);
             handleMovement2 = rotateRef.TransformPoint(handleMovement2);
             reloaderGrip.position = handleMovement2;  
+        }
+        if(pump)
+        {
+            float zValue = (leverL.output.z * multiplier/100) - 1.5f; //push/pull
+            float yValue = (leverL.output.y * multiplier);
+            float xValue = (leverL.output.x * multiplier); //rotate\
+            handleMovement2 = new Vector3(0,-0.1f,-zValue - 0.1f);
+            handleMovement2 = rotateRef.TransformPoint(handleMovement2);
+            reloaderGrip.position = handleMovement2;  
+        }
+        
+    }
+    public void reloadPumpProtocol()
+    {
+        if(!lockReloader)
+        {
+            if(leverL.output.z <= 0.20f)
+            {
+                startReload = false;
+                reloaderGripMovement();
+            }
+        }
+        if(leverL.output.z > 0.20f)
+        {
+            if(!firstDrop)
+            {
+                audioManager.Play("pumpForward");
+                if(msh.ammoCount > 0)
+                {
+                    Instantiate(dropDrum,magHolder.transform.position,magHolder.transform.rotation); 
+                }
+                firstDrop = true;
+            }   
+            lockReloader = true;
+        }
+        if(leverL.output.z > 0.20f)
+        {
+            wentBack = true;
+            needPump = true;
+        }
+        if(leverL.output.z < 0.05 & wentBack == true)
+        {
+            audioManager.Play("pumpForward");
+            firstDrop = false;
+            needPump = false;
+            wentBack = false;
+        }
+        if(leverL.output.z > 0.20f & leverL.output.x < 0.10f)
+        {
+            startReload = true;
+        }
+        if(startReload)
+        {
+            if(leverL.output.x > 0.2f)
+            {
+                lockReloader = true;
+            }
+            if(leverL.output.x > 0.65)
+            {
+                twist1 = true;
+            }
+            if(leverL.output.x < 0.10f & twist1 == true)
+            {
+                if(msh.ammoCount < msh.maxAmmo & msh.magCount > 0)
+                {
+                    audioManager.Play("shellLoad");
+                    msh.magCount -= 1;
+                    msh.ammoCount += 1;
+                }
+                finishReload = false;
+                lockReloader = false;
+                twist1 = false;
+            }
+            if(leverL.output.x < 0.10f & twist1 == false)
+            {
+                lockReloader = false;
+            }
+        }
+    }
+    void reloadFullAutoProtocol()
+    {
+        // ^^^^ use values for movement of the reloader
+        if(!lockReloader)
+        {
+            reloaderGripMovement();
         }
         if(!startReload)
         {
@@ -279,7 +395,7 @@ public class gunControlScript : MonoBehaviour
             twist1 = false;
             twist2 = false;
             startReload = false;
-            msh.ammoCount = magSize;
+            msh.ammoCount = msh.maxAmmo;
             finishReload = false;
         }
     }

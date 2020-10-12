@@ -17,6 +17,7 @@ TagManager:
   - foot
   - floor
   - dropPod
+  - AIDamage
   layers:
   - Default
   - TransparentFX

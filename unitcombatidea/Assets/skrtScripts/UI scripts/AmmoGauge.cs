@@ -35,6 +35,8 @@ public class AmmoGauge : MonoBehaviour
         if(msh.ammoCount == 0 & !runItOnce)
         {
             ammoDisplay.text = msh.ammoCount.ToString();
+            slider.value = msh.ammoCount;
+            fill.color = gradient.Evaluate(slider.normalizedValue);
             runItOnce = true;
         }
         
