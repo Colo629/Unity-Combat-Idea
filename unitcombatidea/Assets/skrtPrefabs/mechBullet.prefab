@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5765ce89c0566c340ad12812abbaed51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletDamage1: 1
   damageScript: {fileID: 0}
   colliderHit: {fileID: 0}
+  collisionData: {fileID: 0}
   transformHit: {fileID: 0}
   bulletPierce: 0
   bulletDam: 0
+  thisBody: {fileID: 6803021219539293923}
+  thisCollider: {fileID: 1294198696435123143}
+  thisRenderer: {fileID: 7625706536430833716}
 --- !u!1001 &4618006395922196173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -119,6 +124,24 @@ PrefabInstance:
 --- !u!1 &519415212861002509 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5125977341837653440, guid: 4c32915cdb1354a4897ab3bc1e925ff7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4618006395922196173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7625706536430833716 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3009961359660627705, guid: 4c32915cdb1354a4897ab3bc1e925ff7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4618006395922196173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1294198696435123143 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 5900734218214221066, guid: 4c32915cdb1354a4897ab3bc1e925ff7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4618006395922196173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &6803021219539293923 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 2197575855221846062, guid: 4c32915cdb1354a4897ab3bc1e925ff7,
     type: 3}
   m_PrefabInstance: {fileID: 4618006395922196173}
   m_PrefabAsset: {fileID: 0}

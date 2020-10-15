@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class MechStatusHolder : MonoBehaviour
 {
+    public EjectorManager em;
+    public gunControlScript gcs;
     public moveOnly ms;
+    public Transform mechCommandPlat;
     public float fuelCount;
     public float maxFuel;
     public float ammoCount;
@@ -38,17 +41,51 @@ public class MechStatusHolder : MonoBehaviour
     public Collider rightArmorA;
     public Collider leftArmorL;
     public Collider rightArmorL;
+    public GameObject equipedGun;
+    public bool gunChange;
+    public bool shotgun;
+    public GameObject shotgunR;
+    public bool autoCannon;
+    public GameObject autoCannonR;
+    public bool revoRifle;
+    public bool pump;
+    public bool disabledLeftArm;
+    public bool disabledRightArm;
+    public bool disabledRightLeg;
+    public bool disabledLeftLeg;
+    public bool bothDestroyed;
+    public bool ejectLeftArmArmor;
+    public bool ejectRightArmArmor;
+    public bool ejectLeftLegArmor;
+    public bool ejectRightLegArmor;
+    public bool ejectLeftArm;
+    public bool ejectRightArm;
+    public bool ejectRightLeg;
+    public bool ejectLeftLeg;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        gcs = equipedGun.GetComponentInChildren<gunControlScript>();
+        if(gcs.pump == true)
+        {
+            pump = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(disabledLeftArm & disabledLeftLeg)
+        {
+            bothDestroyed = true;
+        }
+        if(gunChange)
+        {
+            GunChangeProtocol();
+        }
+        
         if(ammoCount < 0)
         {
             ammoCount = 0;
@@ -90,6 +127,47 @@ public class MechStatusHolder : MonoBehaviour
         rightArmorA.enabled = true;
         leftArmorL.enabled = true;
         rightArmorL.enabled = true; 
+        disabledLeftArm = false;
+        disabledRightArm = false;
+        disabledRightLeg = false;
+        disabledLeftLeg = false;
+        bothDestroyed = false;
+        ejectLeftArmArmor = false;
+        ejectRightArmArmor =false;
+        ejectLeftLegArmor = false;
+        ejectRightLegArmor = false;
+        ejectLeftArm = false ;
+        ejectRightArm = false;
+        ejectRightLeg = false;
+        ejectLeftLeg = false;
+        em.ResetEjection();
         requip = false;   
+    }
+    public void GunChangeProtocol()
+    {
+        equipedGun.SetActive(false);
+        if(shotgun)
+        {
+            shotgunR.SetActive(true);
+            equipedGun = shotgunR;
+            pump = true;
+            shotgun = false;
+        }
+        /*if(revoRifle)
+        {
+            revoRifleR.SetActive(true);
+            revoRifle = false;
+        }*/
+        if(autoCannon)
+        {
+            autoCannonR.SetActive(true);
+            equipedGun = autoCannonR;
+            pump = false;
+            autoCannon = false;
+        }
+        gcs = equipedGun.GetComponentInChildren<gunControlScript>();
+        gcs.RefreshAmmoProtocol();
+        gunChange = false;
+
     }
 }

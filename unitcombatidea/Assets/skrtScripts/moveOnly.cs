@@ -5,6 +5,8 @@ using Valve.VR;
 
 public class moveOnly : MonoBehaviour
 {
+    public float rotAcc;
+    public float rotDec;
     public MechStatusHolder msh;
     public SteamVR_Action_Vector2 m_MoveValue = null;
     public float maxSpeed;
@@ -25,7 +27,6 @@ public class moveOnly : MonoBehaviour
     public SteamVR_Action_Vector2 m_RightRotatePress = null;
     public float deadzone;
     public float rotationSpeed;
-    public float rotateSens;
     public Transform rotateAroundThis;
     public Transform rotateAroundThis2;
     public float changeElevation;
@@ -42,6 +43,7 @@ public class moveOnly : MonoBehaviour
     public bool doubleOnce;
     public Vector3 newDirectionV3Value;
     public bool outOfFuel;
+    private float privateRotate;
 
     // call rigidbody.velocity (vector3)
     
@@ -63,7 +65,7 @@ public class moveOnly : MonoBehaviour
             mechBody.useGravity = false;
         }
         armorChanges();
-        //if(leverRight.grabbed == true)
+        if(leverRight.grabbed == true)
         {
             rotateCalculations();
         }
@@ -221,41 +223,18 @@ public class moveOnly : MonoBehaviour
         }
     }
     public void rotateCalculations()
-    {
-       /* if(Mathf.Abs(m_RightRotatePress.axis.x) < deadzone & Mathf.Abs(m_RightRotatePress.axis.y) > deadzone)
-        {  
-            rotationSpeed = m_RightRotatePress.axis.y * rotateSens;
-            rotationSpeed = rotationSpeed * Time.deltaTime;
-            changeElevation += rotationSpeed; 
-            clampedElevation = Mathf.Clamp(changeElevation,-upDownAngle,upDownAngle);
-            if(changeElevation >= upDownAngle)
+    {  
+        {    //rotateSense
+              
+            if(m_RightRotatePress.axis.x == 0)
             {
-                changeElevation = upDownAngle;
-            }
-            if(changeElevation <= -upDownAngle)
+                privateRotate = ((m_RightRotatePress.axis.x * rotDec) + privateRotate) / (rotDec + 1f);
+            } 
+            else
             {
-                changeElevation = -upDownAngle;
-            }
-            rotateAroundThis2.localEulerAngles = new Vector3(-clampedElevation,rotateAroundThis2.localEulerAngles.y,rotateAroundThis2.localEulerAngles.z);
-
-        }*/
-        if(Mathf.Abs(m_RightRotatePress.axis.y) < deadzone | Mathf.Abs(m_RightRotatePress.axis.x) > deadzone)
-        {   
-            //rotationSpeed = m_RightRotatePress.axis.x * rotateSens;
-           // rotationSpeed = rotationSpeed * Time.deltaTime;
-            Vector3 mechAngularVelocity = mechBody.angularVelocity;
-            Vector2 mechAngularVelocityV2 = new Vector2(mechAngularVelocity.x,mechAngularVelocity.z); //might be not x and z
-            Vector2 newAngularVelocity = Vector2.Lerp(mechAngularVelocityV2,(new Vector2(m_RightRotatePress.axis.x,0) * maxRotation),(0.8f * Time.deltaTime));
-            Vector3 newAngularVelocityV3 = new Vector3(newAngularVelocity.x,0,newAngularVelocity.y);
-            transform.RotateAround(rotateAroundThis.position, Vector3.up, (m_RightRotatePress.axis.x * maxRotation)); 
-            //mechBody.angularVelocity = newAngularVelocityV3;
-            
-            //VVVVVVVVVVVV    REFERENCE ONLY REFERENCE ONLY REFERENCE ONLY REFERENCE ONLY VVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-           /* Vector3 localMechDirection = commandPlat.InverseTransformDirection(mechBody.velocity);
-            Vector2 mechDirectionV2 = new Vector2(localMechDirection.x,localMechDirection.z);
-            Vector2 newDirection = Vector2.Lerp(mechDirectionV2,(m_MoveValue.axis * maxSpeed),(0.8f * Time.deltaTime));
-            Vector3 newDirectionV3 = new Vector3(newDirection.x,0,newDirection.y);
-            mechBody.velocity = commandPlat.TransformDirection(newDirectionV3);*/
+                privateRotate = ((m_RightRotatePress.axis.x * rotAcc) + privateRotate) / (rotAcc + 1f);
+            }       
+            transform.RotateAround(rotateAroundThis.position, Vector3.up, (privateRotate * maxRotation));      
         }  
     }
 }

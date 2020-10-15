@@ -18,6 +18,8 @@ TagManager:
   - floor
   - dropPod
   - AIDamage
+  - sword
+  - bullet
   layers:
   - Default
   - TransparentFX
@@ -37,15 +39,15 @@ TagManager:
   - floor
   - character controller
   - gunbarrel
-  - 
+  - detectEnemy
   - grapplingHook
   - CircleCams
   - mechBody
   - fingerGumDumb
   - fingerBox
-  - 
-  - 
-  - 
+  - mechOnly
+  - enemy
+  - detectObject
   - 
   - 
   - 

@@ -5,6 +5,7 @@ using Valve.VR;
 
 public class swordDamageScript : MonoBehaviour
 {
+    public bool swordDamage1 = true;
     public damageScript damageScript;
     public Collider colliderHit;
     public Transform transformHit;
@@ -17,6 +18,8 @@ public class swordDamageScript : MonoBehaviour
     public moveOnly ms;
     public bool resetAttack;
     public ParticleSystem stabSparks;
+    public bool slashDamage1;
+    public bool stabDamage1;
     void OnTriggerEnter(Collider gumDumb)
     {
         if(swordScript.firing == true)
@@ -31,6 +34,11 @@ public class swordDamageScript : MonoBehaviour
         {
             calculateStabDamage(gumDumb);
         }
+    }
+    void OnTriggerExit(Collider gumDumb)
+    {
+        slashDamage1 = false;
+        stabDamage1 = false;
     }
     void OnTriggerStay(Collider gumDumb)
     {
@@ -72,18 +80,9 @@ public class swordDamageScript : MonoBehaviour
     }
     public void calculateSlashDamage(Collider collisionData)
     {   
-        
         damageScript = collisionData.gameObject.GetComponent<damageScript>();
-        if(slashPierce >= damageScript.penValue)
-        {
-            damageScript.healthPool -= slashDamage;
-        }
-        if(slashPierce < damageScript.penValue)
-        {
-            
-            damageScript.healthPool -= (slashDamage/5);
-        }
         calculated = true;
+        slashDamage1 = true;
     }
     
     public void calculateStabDamage(Collider collisionData)
@@ -91,16 +90,7 @@ public class swordDamageScript : MonoBehaviour
         stabSparks.Play();
         damageScript = collisionData.gameObject.GetComponent<damageScript>();
         FindObjectOfType<AudioManager>().Play("swordStabSound");
-        if(stabPierce >= damageScript.penValue)
-        {
-            
-            damageScript.healthPool -= stabDamage;
-        }
-        if(stabPierce < damageScript.penValue)
-        {
-            damageScript.healthPool -= (stabDamage/5);
-        }
-
         calculated = true;
+        stabDamage1 = true;
     }
 }

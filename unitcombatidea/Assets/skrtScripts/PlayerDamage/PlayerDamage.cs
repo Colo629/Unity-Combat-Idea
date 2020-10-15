@@ -11,6 +11,10 @@ public class PlayerDamage : MonoBehaviour
     public bool rLA;
     public bool head;
     public bool torso;
+    public bool leftArm;
+    public bool rightArm;
+    public bool leftLeg;
+    public bool rightLeg;
     public bool notArmor;
     public Collider collisionData;
     public AIBulletScript aiBS;
@@ -72,6 +76,46 @@ public class PlayerDamage : MonoBehaviour
             if(notArmor)
             {
                 //write a different function for taking damage on base models.
+                if(leftArm)
+                {
+                    armorStatus.updateArmorStatus();
+                    msh.leftArmHp -= aiBS.damageValue;
+                    if(msh.leftArmHp <= 0)
+                    {
+                        msh.disabledLeftArm = true;
+                        armorStatus.updateArmorStatus();
+                    }
+                }
+                 if(leftLeg)
+                {
+                    armorStatus.updateArmorStatus();
+                    msh.leftLegHp -= aiBS.damageValue;
+                    if(msh.leftLegHp <= 0)
+                    {
+                        msh.disabledLeftLeg = true;
+                        armorStatus.updateArmorStatus();
+                    }
+                }
+                 if(rightArm)
+                {
+                    armorStatus.updateArmorStatus();
+                    msh.rightArmHp -= aiBS.damageValue;
+                    if(msh.rightArmHp <= 0)
+                    {
+                        msh.disabledRightArm = true;
+                        armorStatus.updateArmorStatus();
+                    }
+                }
+                if(rightLeg)
+                {
+                    armorStatus.updateArmorStatus();
+                    msh.rightLegHp -= aiBS.damageValue;
+                    if(msh.rightLegHp <= 0)
+                    {
+                        msh.disabledRightLeg = true;
+                        armorStatus.updateArmorStatus();
+                    }
+                }
             }
             
         }

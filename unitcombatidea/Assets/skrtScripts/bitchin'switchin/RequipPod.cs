@@ -6,16 +6,69 @@ public class RequipPod : MonoBehaviour
 {
     public MechStatusHolder msh;
     public playerManager playerScript;
+    public bool shotgunDrop;
+    public bool revoDrop;
+    public bool autoCannonDrop;
+    public bool oneUse;
+    public leverLessEjection lLE;
+    public bool set;
+    public GameObject gumRat;
+    public Rigidbody topDrop;
+
+    
     void Start()
     {
-        msh = playerScript.player.GetComponent<MechStatusHolder>();
+        
     }
+    public void ActivateThis()
+    {
+       
+    }
+    
     void OnTriggerEnter(Collider other)
     {
-        msh.requip = true;
+        if(!oneUse)
+        {
+            msh = other.transform.GetComponentInParent<MechStatusHolder>();
+            StartCoroutine(waitForRearm());
+        } 
     }
+    
     void OnTriggerExit(Collider other)
     {
-        msh.requip = false;
+        msh.requip = false;    
+    }
+    
+    public IEnumerator waitForRearm()
+    {
+        msh.mechCommandPlat.GetComponent<Rigidbody>().isKinematic = true;
+        msh.ms.enabled = false;
+        yield return new WaitForSeconds(5);
+        msh.ms.enabled = true;
+        msh.requip = true;
+        GunChange();
+        msh.mechCommandPlat.GetComponent<Rigidbody>().isKinematic = false;
+        lLE.ejectThis = true;
+        oneUse = true;
+        
+
+    }
+    public void GunChange()
+    {
+         if(shotgunDrop)
+        {
+            msh.shotgun = true;
+            msh.gunChange = true;
+        }
+        if(revoDrop)
+        {
+            msh.revoRifle = true;
+            msh.gunChange = true;
+        }
+        if(autoCannonDrop)
+        {
+            msh.autoCannon = true;
+            msh.gunChange = true;
+        }
     }
 }

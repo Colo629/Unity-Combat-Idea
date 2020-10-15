@@ -27,17 +27,17 @@ public class AmmoGauge : MonoBehaviour
         
         if(msh.ammoCount > 0)
         {
+            slider.maxValue = msh.maxAmmo;
             ammoDisplay.text = msh.ammoCount.ToString();
             slider.value = msh.ammoCount;
             fill.color = gradient.Evaluate(slider.normalizedValue);
-            runItOnce = false;
         }
         if(msh.ammoCount == 0 & !runItOnce)
         {
+            slider.maxValue = msh.maxAmmo;
             ammoDisplay.text = msh.ammoCount.ToString();
             slider.value = msh.ammoCount;
             fill.color = gradient.Evaluate(slider.normalizedValue);
-            runItOnce = true;
         }
         
         magDisplay.text = msh.magCount.ToString();

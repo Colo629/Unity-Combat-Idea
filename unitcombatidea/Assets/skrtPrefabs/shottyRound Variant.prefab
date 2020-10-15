@@ -12,10 +12,15 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 65c1ca3a58aceea409c90db8b9c2bbf9, type: 3}
+    - target: {fileID: 82450110104508064, guid: e5a146616ea6a10418cdb542624713c1,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.022
+      objectReference: {fileID: 0}
     - target: {fileID: 4504563864162160315, guid: e5a146616ea6a10418cdb542624713c1,
         type: 3}
       propertyPath: bulletDam
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5713733979498151197, guid: e5a146616ea6a10418cdb542624713c1,
         type: 3}
@@ -75,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 6656023239177512747, guid: e5a146616ea6a10418cdb542624713c1,
         type: 3}
       propertyPath: m_Name
-      value: shottyRound
+      value: shottyRound Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5a146616ea6a10418cdb542624713c1, type: 3}

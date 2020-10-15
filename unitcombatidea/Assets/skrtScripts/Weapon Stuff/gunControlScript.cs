@@ -61,6 +61,7 @@ public class gunControlScript : MonoBehaviour
     public bool pump;
     public bool needPump;
     public AudioManager audioManager;
+    public bool runItOnce2;
     
     //vvvvv get rid of when learn to use for loops lmao vvvv
     public Renderer r19;
@@ -85,10 +86,7 @@ public class gunControlScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        msh.ammoCount = magSize;
-        msh.maxAmmo = magSize;
-        msh.maxMags = magCount;
-        msh.magCount = magCount;
+        RefreshAmmoProtocol();
     }
 
     // Update is called once per frame
@@ -117,7 +115,7 @@ public class gunControlScript : MonoBehaviour
                 r1.enabled = false;
                 stopRunning = true;
             }
-        if(!destroyed)
+        if(!destroyed & !msh.bothDestroyed)
         {
             if(!switchToMeleeB)
             {      
@@ -138,11 +136,11 @@ public class gunControlScript : MonoBehaviour
                         firePumpProtocol();
                     }
                 }
-                if(!pump)
+                if(!pump & msh.disabledLeftArm == false)
                 {
                     reloadFullAutoProtocol();
                 }
-                if(pump)
+                if(pump & msh.disabledLeftArm == false)
                 {
                     reloadPumpProtocol();
                 }
@@ -211,7 +209,13 @@ public class gunControlScript : MonoBehaviour
         gunHandle.localEulerAngles = new Vector3(0,-xValue,0);
         rotateRef.localEulerAngles = new Vector3(-zValue,0,0);
     }
-
+    public void RefreshAmmoProtocol()
+    {
+        msh.ammoCount = magSize;
+        msh.maxAmmo = magSize;
+        msh.maxMags = magCount;
+        msh.magCount = magCount;
+    }
     void fireFullAutoProtocol()
     {
         if(!firstShot)
