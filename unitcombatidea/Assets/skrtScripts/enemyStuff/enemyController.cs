@@ -18,6 +18,9 @@ public class enemyController : MonoBehaviour
     public Transform patrol3;
     public Transform patrol4;
     public Transform patrol5;
+    public Transform gun;
+    public AIBulletScript aiBS;
+    public float attackDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -106,20 +109,24 @@ public class enemyController : MonoBehaviour
         float distance = Vector3.Distance(target.position, transform.position);
         agent.SetDestination(target.position);
         lookRadius = 40f;
-        if(distance < 25f)
+        if(distance < attackDistance)
         {
             agentAttack();
         }
     }
     void agentAttack()
     {
-
+        Vector3 direction = (target.position - gun.position).normalized;
+        Quaternion gunRotation = Quaternion.LookRotation(direction);
+        gun.rotation = Quaternion.Slerp(gun.rotation,gunRotation,Time.deltaTime * 5f); 
+        aiBS.firing = true;
     }
     void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x,0,direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation,lookRotation,Time.deltaTime * 5f); 
+
     }
     void OnDrawGizmosSelected()
     {

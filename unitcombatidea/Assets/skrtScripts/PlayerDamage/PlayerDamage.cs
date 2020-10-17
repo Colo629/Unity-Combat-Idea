@@ -16,7 +16,6 @@ public class PlayerDamage : MonoBehaviour
     public bool leftLeg;
     public bool rightLeg;
     public bool notArmor;
-    public Collider collisionData;
     public AIBulletScript aiBS;
     public Collider thisPart;
     public ArmorStatus armorStatus;
@@ -25,17 +24,14 @@ public class PlayerDamage : MonoBehaviour
     {
     
     }
-    public void OnTriggerEnter(Collider collisionData)
-    {
-        if(collisionData.tag == "AIDamage")   //make sure to check AI bullets tags
-        {
-            aiBS = collisionData.gameObject.GetComponent<AIBulletScript>();
+    public void DamageThis(float damage)
+    {  
             if(!notArmor)
             {
                     if(lAA)
                 {
                     armorStatus.updateArmorStatus();
-                    msh.leftArmArmorCount -= aiBS.damageValue;
+                    msh.leftArmArmorCount -= damage;
                     if(msh.leftArmArmorCount <= 0)
                     {
                     msh.leftArmorA.enabled = false;
@@ -45,7 +41,7 @@ public class PlayerDamage : MonoBehaviour
                 if(rAA)
                 {
                     armorStatus.updateArmorStatus();
-                    msh.rightArmArmorCount -= aiBS.damageValue;
+                    msh.rightArmArmorCount -= damage;
                     if(msh.leftArmArmorCount <= 0)
                     {
                         msh.rightArmorA.enabled = false;
@@ -55,7 +51,7 @@ public class PlayerDamage : MonoBehaviour
                 if(lLA)
                 {
                     armorStatus.updateArmorStatus();
-                    msh.leftLegArmorCount -= aiBS.damageValue;
+                    msh.leftLegArmorCount -= damage;
                     if(msh.leftLegArmorCount <= 0)
                     {
                         msh.leftArmorL.enabled = false;
@@ -65,7 +61,7 @@ public class PlayerDamage : MonoBehaviour
                 if(rLA)
                 {
                     armorStatus.updateArmorStatus();
-                    msh.rightLegArmorCount -= aiBS.damageValue;
+                    msh.rightLegArmorCount -= damage;
                     if(msh.rightLegArmorCount <= 0)
                     {
                         msh.rightArmorL.enabled = false;
@@ -79,7 +75,7 @@ public class PlayerDamage : MonoBehaviour
                 if(leftArm)
                 {
                     armorStatus.updateArmorStatus();
-                    msh.leftArmHp -= aiBS.damageValue;
+                    msh.leftArmHp -= damage;
                     if(msh.leftArmHp <= 0)
                     {
                         msh.disabledLeftArm = true;
@@ -89,7 +85,7 @@ public class PlayerDamage : MonoBehaviour
                  if(leftLeg)
                 {
                     armorStatus.updateArmorStatus();
-                    msh.leftLegHp -= aiBS.damageValue;
+                    msh.leftLegHp -= damage;
                     if(msh.leftLegHp <= 0)
                     {
                         msh.disabledLeftLeg = true;
@@ -99,7 +95,7 @@ public class PlayerDamage : MonoBehaviour
                  if(rightArm)
                 {
                     armorStatus.updateArmorStatus();
-                    msh.rightArmHp -= aiBS.damageValue;
+                    msh.rightArmHp -= damage;
                     if(msh.rightArmHp <= 0)
                     {
                         msh.disabledRightArm = true;
@@ -109,25 +105,24 @@ public class PlayerDamage : MonoBehaviour
                 if(rightLeg)
                 {
                     armorStatus.updateArmorStatus();
-                    msh.rightLegHp -= aiBS.damageValue;
+                    msh.rightLegHp -= damage;
                     if(msh.rightLegHp <= 0)
                     {
                         msh.disabledRightLeg = true;
                         armorStatus.updateArmorStatus();
                     }
                 }
-            }
-            
-        }
-    }
-    void OnTriggerExit(Collider collisionData)
-    {
-        armorStatus.updateArmorStatus();
-        collisionData = null;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+                if(torso)
+                {
+                    armorStatus.updateArmorStatus();
+                    msh.torsoHp -= damage;
+                    if(msh.torsoHp <= 0)
+                    {
+                        msh.disabledTorso = true;
+                        armorStatus.updateArmorStatus();
+                    }
+                }
+            } 
+        armorStatus.updateArmorStatus();      
     }
 }

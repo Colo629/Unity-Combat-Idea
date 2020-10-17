@@ -53,6 +53,8 @@ public class MechStatusHolder : MonoBehaviour
     public bool disabledRightArm;
     public bool disabledRightLeg;
     public bool disabledLeftLeg;
+    public bool disabledTorso;
+    public bool disabledHead;
     public bool bothDestroyed;
     public bool ejectLeftArmArmor;
     public bool ejectRightArmArmor;
@@ -140,6 +142,8 @@ public class MechStatusHolder : MonoBehaviour
         ejectRightArm = false;
         ejectRightLeg = false;
         ejectLeftLeg = false;
+        disabledTorso = false;
+        disabledHead = false;
         em.ResetEjection();
         requip = false;   
     }
