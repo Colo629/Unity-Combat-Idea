@@ -44,6 +44,8 @@ public class ArmorStatus : MonoBehaviour
     // Update is called once per frame
     public void updateArmorStatus()
     {
+        head.color = head2.Evaluate(msh.headHp / msh.headMaxHp);
+        torso.color = torso2.Evaluate(msh.torsoHp / msh.torsoMaxHp );
         leftArm.color = leftArm2.Evaluate(msh.leftArmHp / msh.leftArmMaxHp);
         rightArm.color = rightArm2.Evaluate(msh.rightArmHp / msh.rightArmMaxHp);
         leftLeg.color = leftLeg2.Evaluate(msh.leftLegHp / msh.leftLegMaxHp);

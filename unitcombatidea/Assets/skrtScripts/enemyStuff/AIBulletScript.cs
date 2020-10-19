@@ -67,9 +67,9 @@ public class AIBulletScript : MonoBehaviour
     IEnumerator WaitForReload()
     {
         yield return new WaitForSeconds(reloadTime);
-        ammoPool = maxAmmo;
         magCount -= 1;
-        startReload = false;   
+        startReload = false;  
+        ammoPool = maxAmmo; 
     }
 
 }

@@ -22,24 +22,13 @@ public class AmmoGauge : MonoBehaviour
         slider.value = msh.ammoCount;
     }
     // Update is called once per frame
-    void Update()
+   public void RefreshAmmoGauge()
     {
-        
-        if(msh.ammoCount > 0)
-        {
-            slider.maxValue = msh.maxAmmo;
-            ammoDisplay.text = msh.ammoCount.ToString();
-            slider.value = msh.ammoCount;
-            fill.color = gradient.Evaluate(slider.normalizedValue);
-        }
-        if(msh.ammoCount == 0 & !runItOnce)
-        {
-            slider.maxValue = msh.maxAmmo;
-            ammoDisplay.text = msh.ammoCount.ToString();
-            slider.value = msh.ammoCount;
-            fill.color = gradient.Evaluate(slider.normalizedValue);
-        }
-        
+        slider.maxValue = msh.maxAmmo;
+        ammoDisplay.text = msh.ammoCount.ToString();
         magDisplay.text = msh.magCount.ToString();
+        slider.value = msh.ammoCount;
+        fill.color = gradient.Evaluate(slider.normalizedValue);
+        runItOnce = false;
     }
 }

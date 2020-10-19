@@ -119,7 +119,15 @@ public class enemyController : MonoBehaviour
         Vector3 direction = (target.position - gun.position).normalized;
         Quaternion gunRotation = Quaternion.LookRotation(direction);
         gun.rotation = Quaternion.Slerp(gun.rotation,gunRotation,Time.deltaTime * 5f); 
-        aiBS.firing = true;
+        if(aiBS.startReload == false)
+        {
+            aiBS.firing = true;
+        }
+        else
+        {
+            aiBS.firing = false;
+        }
+        
     }
     void FaceTarget()
     {

@@ -18,7 +18,7 @@ public class buttonScript : Switcher
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
+        
         if(!buttonPressed)
         {
             FindObjectOfType<AudioManager>().Play("beepSound");

@@ -27,7 +27,7 @@ public class bulletDamage : MonoBehaviour
     public IEnumerator DestroyThis()
     {
         yield return new WaitForSeconds(1);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
         
     }
     void Start()

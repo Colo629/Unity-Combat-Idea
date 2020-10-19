@@ -5,6 +5,7 @@ using Valve.VR;
 
 public class gunControlScript : MonoBehaviour
 {
+    public AmmoGauge ammoGauge;
     public bool wentBack;
     public bool rightHand;
     public leverScript leverR;
@@ -179,12 +180,14 @@ public class gunControlScript : MonoBehaviour
     public void firePumpProtocol()
     {
         gS.fireGun();
+        ammoGauge.RefreshAmmoGauge();
         needPump = true;
     }
     public void fireSingleShotProtocol()
     {
         firstShot = true;
         gS.fireGun();
+        ammoGauge.RefreshAmmoGauge();
     }
     void triggerSolution()
     {
@@ -215,6 +218,7 @@ public class gunControlScript : MonoBehaviour
         msh.maxAmmo = magSize;
         msh.maxMags = magCount;
         msh.magCount = magCount;
+        ammoGauge.RefreshAmmoGauge();
     }
     void fireFullAutoProtocol()
     {
@@ -222,6 +226,7 @@ public class gunControlScript : MonoBehaviour
         {    
             fired = true;
             gS.fireGun();
+            ammoGauge.RefreshAmmoGauge();
             firstShot = true;       
         }
         if(fired == true & firstShot == true)
@@ -235,6 +240,7 @@ public class gunControlScript : MonoBehaviour
         yield return new WaitForSeconds(1/(fireRPM/60));
         fired = true;
         gS.fireGun();
+        ammoGauge.RefreshAmmoGauge();
     }
     void reloaderGripMovement()
     {
@@ -265,7 +271,6 @@ public class gunControlScript : MonoBehaviour
             if(leverL.output.z <= 0.20f)
             {
                 startReload = false;
-                reloaderGripMovement();
             }
         }
         if(leverL.output.z > 0.20f)
@@ -314,6 +319,7 @@ public class gunControlScript : MonoBehaviour
                     audioManager.Play("shellLoad");
                     msh.magCount -= 1;
                     msh.ammoCount += 1;
+                    ammoGauge.RefreshAmmoGauge();
                 }
                 finishReload = false;
                 lockReloader = false;
@@ -339,6 +345,7 @@ public class gunControlScript : MonoBehaviour
                 lockReloader = true;
                 startReload = true;
                 msh.ammoCount = 0;
+                ammoGauge.RefreshAmmoGauge();
                 //shut off forward movement
                 //enable twisting to grab the ammo barrel
             }
@@ -347,6 +354,7 @@ public class gunControlScript : MonoBehaviour
                 startReload = true;
                 lockReloader = false;
                 msh.ammoCount = 0;
+                ammoGauge.RefreshAmmoGauge();
             }
         }
         if(startReload == true)
@@ -386,6 +394,7 @@ public class gunControlScript : MonoBehaviour
                     if(leverL.output.z < 0.05)
                     {   
                         msh.magCount -= 1;
+                        ammoGauge.RefreshAmmoGauge();
                         finishReload = true;
                     }
                 }
@@ -400,6 +409,7 @@ public class gunControlScript : MonoBehaviour
             twist2 = false;
             startReload = false;
             msh.ammoCount = msh.maxAmmo;
+            ammoGauge.RefreshAmmoGauge();
             finishReload = false;
         }
     }

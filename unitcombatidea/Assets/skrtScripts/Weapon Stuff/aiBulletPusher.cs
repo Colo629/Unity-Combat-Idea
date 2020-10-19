@@ -15,11 +15,13 @@ public class aiBulletPusher : MonoBehaviour
     {
         worldVelocity = transform.forward * velocity;
         calculateBullet();
+        StartCoroutine(SelfDetonation());
     }
 
     // Update is called once per frame
     void calculateBullet()
     {
+        
         velocityY -= gravity * Time.deltaTime;
         Vector3 currentVelocity = worldVelocity + new Vector3(0,velocityY,0);
         Vector3 newPos = transform.position + (currentVelocity * Time.deltaTime);
@@ -38,5 +40,11 @@ public class aiBulletPusher : MonoBehaviour
     void FixedUpdate()
     {
         calculateBullet();
+    }
+    IEnumerator SelfDetonation()
+    {
+    yield return new WaitForSeconds(3);
+    Destroy(gameObject);
+        
     }
 }
