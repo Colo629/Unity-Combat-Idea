@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MechStatusHolder : MonoBehaviour
 {
+    public ArmorStatus armorStatus;
     public AmmoGauge ammoGauge;
     public EjectorManager em;
     public gunControlScript gcs;
@@ -145,8 +146,9 @@ public class MechStatusHolder : MonoBehaviour
         ejectLeftLeg = false;
         disabledTorso = false;
         disabledHead = false;
-        ammoGauge.RefreshAmmoGauge();
         em.ResetEjection();
+        armorStatus.updateArmorStatus();
+        ammoGauge.RefreshAmmoGauge();
         requip = false;   
     }
     public void GunChangeProtocol()

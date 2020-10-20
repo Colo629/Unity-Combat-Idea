@@ -33,7 +33,7 @@ public class partEjectorLeverless : MonoBehaviour
                 //ejectedPart.GetComponent<Rigidbody>()
                 Rigidbody instEjectedRigidbody = instEjectedPart.GetComponent<Rigidbody>();
                 instEjectedRigidbody.isKinematic = false;
-                instEjectedRigidbody.AddForce(instEjectedPart.transform.forward * pushSpeed);           
+                instEjectedRigidbody.AddForce(instEjectedPart.transform.forward * pushSpeed);          
             }
         }
 

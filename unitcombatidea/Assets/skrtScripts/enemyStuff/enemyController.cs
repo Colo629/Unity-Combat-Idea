@@ -21,6 +21,7 @@ public class enemyController : MonoBehaviour
     public Transform gun;
     public AIBulletScript aiBS;
     public float attackDistance;
+    public float rotateSens;
 
     // Start is called before the first frame update
     void Start()
@@ -118,7 +119,7 @@ public class enemyController : MonoBehaviour
     {
         Vector3 direction = (target.position - gun.position).normalized;
         Quaternion gunRotation = Quaternion.LookRotation(direction);
-        gun.rotation = Quaternion.Slerp(gun.rotation,gunRotation,Time.deltaTime * 5f); 
+        gun.rotation = Quaternion.Slerp(gun.rotation,gunRotation,Time.deltaTime * rotateSens); 
         if(aiBS.startReload == false)
         {
             aiBS.firing = true;
@@ -133,7 +134,7 @@ public class enemyController : MonoBehaviour
     {
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x,0,direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation,lookRotation,Time.deltaTime * 5f); 
+        transform.rotation = Quaternion.Slerp(transform.rotation,lookRotation,Time.deltaTime * rotateSens); 
 
     }
     void OnDrawGizmosSelected()

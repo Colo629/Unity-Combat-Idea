@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2093852639505447723, guid: a4f2c30bda7553a49801f9cb804d77ca,
         type: 3}
       propertyPath: m_Name
-      value: autoCanDropX
+      value: revoDrop
       objectReference: {fileID: 0}
     - target: {fileID: 2093852639505447724, guid: a4f2c30bda7553a49801f9cb804d77ca,
         type: 3}
@@ -76,6 +76,16 @@ PrefabInstance:
         type: 3}
       propertyPath: revoDrop
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052047257578842893, guid: a4f2c30bda7553a49801f9cb804d77ca,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052047257578842893, guid: a4f2c30bda7553a49801f9cb804d77ca,
+        type: 3}
+      propertyPath: MinDistance
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4f2c30bda7553a49801f9cb804d77ca, type: 3}

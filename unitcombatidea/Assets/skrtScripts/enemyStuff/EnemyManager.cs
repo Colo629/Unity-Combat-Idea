@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyManager : MonoBehaviour
 {
+    public AudioSource engineNoise;
     public Transform headHoncho;
     public Rigidbody headHonchoR;
     public bool armored;
@@ -132,6 +133,7 @@ public class EnemyManager : MonoBehaviour
     }
     public void MechDisabled()
     {
+        engineNoise.Stop();
         headHoncho.GetComponent<NavMeshAgent>().enabled = false;
         headHoncho.GetComponent<enemyController>().enabled = false;
         headHonchoR.isKinematic = false;

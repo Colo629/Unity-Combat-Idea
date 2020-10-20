@@ -28,6 +28,11 @@ public class floorDetector : MonoBehaviour
                 moveScript.spawning = true;
             }
     }
+    void OnTriggerStay(Collider other)
+    {
+        moveScript.airborne = false;
+        moveScript.spawning = true;
+    }
     void OnTriggerExit(Collider other)
     {
             if(defineFoot.tag == "foot")

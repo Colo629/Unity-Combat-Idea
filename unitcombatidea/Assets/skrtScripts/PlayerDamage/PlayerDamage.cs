@@ -19,10 +19,11 @@ public class PlayerDamage : MonoBehaviour
     public AIBulletScript aiBS;
     public Collider thisPart;
     public ArmorStatus armorStatus;
+    public AudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
-    
+        audioManager = msh.gameObject.GetComponentInChildren<AudioManager>();
     }
     public void DamageThis(float damage)
     {  
@@ -123,6 +124,7 @@ public class PlayerDamage : MonoBehaviour
                     }
                 }
             } 
-        armorStatus.updateArmorStatus();      
+        armorStatus.updateArmorStatus();
+        audioManager.Play("impactPlate2");      
     }
 }

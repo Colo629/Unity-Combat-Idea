@@ -15,12 +15,12 @@ PrefabInstance:
     - target: {fileID: 82450110104508064, guid: e5a146616ea6a10418cdb542624713c1,
         type: 3}
       propertyPath: m_Volume
-      value: 0.022
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 4504563864162160315, guid: e5a146616ea6a10418cdb542624713c1,
         type: 3}
       propertyPath: bulletDam
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5713733979498151197, guid: e5a146616ea6a10418cdb542624713c1,
         type: 3}

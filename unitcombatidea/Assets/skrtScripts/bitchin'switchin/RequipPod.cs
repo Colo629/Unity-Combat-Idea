@@ -14,6 +14,7 @@ public class RequipPod : MonoBehaviour
     public bool set;
     public GameObject gumRat;
     public Rigidbody topDrop;
+    public AudioSource beepSource;
 
     
     void Start()
@@ -41,6 +42,7 @@ public class RequipPod : MonoBehaviour
     
     public IEnumerator waitForRearm()
     {
+        beepSource.Stop();
         msh.mechCommandPlat.GetComponent<Rigidbody>().isKinematic = true;
         msh.ms.enabled = false;
         yield return new WaitForSeconds(5);
