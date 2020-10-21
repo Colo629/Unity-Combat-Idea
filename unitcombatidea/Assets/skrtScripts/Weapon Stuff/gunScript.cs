@@ -40,13 +40,10 @@ public bool one = true;
             {
                 Quaternion aimVector = Quaternion.RotateTowards(transform.rotation,Random.rotation,dispersionValue);
                 GameObject instBullet = Instantiate(bullet,transform.position,aimVector) as GameObject;
-                Rigidbody instBulletRigidbody = instBullet.GetComponent<Rigidbody>();
-                instBulletRigidbody.AddForce(instBullet.transform.forward * bulletSpeed);
                 msh.ammoCount -= 1f;
                 Quaternion aimVector1 = Quaternion.RotateTowards(transform.rotation,Random.rotation,dispersionValue);
                 GameObject instBullet1 = Instantiate(bullet,transform.position,aimVector1) as GameObject;
-                Rigidbody instBulletRigidbody1 = instBullet1.GetComponent<Rigidbody>();
-                instBulletRigidbody1.AddForce(instBullet1.transform.forward * bulletSpeed);
+                
                 msh.ammoCount -= 1f;
             }
         if(msh.ammoCount > 0 & msh.pump == true)
@@ -54,10 +51,7 @@ public bool one = true;
             for(int i = 0; i < pellets ; i++)
             {
                 Quaternion aimVector = Quaternion.RotateTowards(transform.rotation,Random.rotation,dispersionValue);
-                GameObject instBullet = Instantiate(bullet,transform.position,aimVector) as GameObject;
-                Rigidbody instBulletRigidbody = instBullet.GetComponent<Rigidbody>();
-                instBulletRigidbody.AddForce(instBullet.transform.forward * bulletSpeed); 
-            }
+                GameObject instBullet = Instantiate(bullet,transform.position,aimVector) as GameObject;            }
             msh.ammoCount -= 1f; 
         }
     }
