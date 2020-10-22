@@ -5,39 +5,55 @@ using UnityEngine;
 public class bulletDamage : MonoBehaviour
 {
 
-    public bool bulletDamage1 = true;
-    public damageScript damageScript;
-    public Collider colliderHit;
-    public Collider collisionData;
-    public Transform transformHit;
-    public float bulletPierce = 0;
-    public float bulletDam = 0;
-    public Rigidbody thisBody;
-    public Collider thisCollider;
-    public Renderer thisRenderer;
-
-    void OnTriggerEnter(Collider collisionData)
-    {
-       Destroy(thisBody);
-       thisCollider.enabled = false;
-       thisRenderer.enabled = false; 
-       StartCoroutine(DestroyThis());
-    }
+    public float velocity;
+    public float drag;
+    public ParticleSystem hitExplosion;
+    public float damage;
+    private float velocityY;
+    private Vector3 worldVelocity;
+    public float gravity = 9.81f;
+    public ParticleSystem explosion;
+    private float startTime;
     // Start is called before the first frame update
-    public IEnumerator DestroyThis()
-    {
-        yield return new WaitForSeconds(1);
-        Destroy(gameObject);
-        
-    }
     void Start()
     {
-        
+        worldVelocity = transform.forward * velocity;
+        calculateBullet();
+        startTime = Time.time;
     }
 
     // Update is called once per frame
-    void Update()
+    void calculateBullet()
     {
         
+        velocityY -= gravity * Time.deltaTime;
+        Vector3 currentVelocity = worldVelocity + new Vector3(0,velocityY,0);
+        Vector3 newPos = transform.position + (currentVelocity * Time.deltaTime);
+        RaycastHit hit;
+        Physics.Raycast(transform.position, currentVelocity, out hit, (currentVelocity.magnitude * Time.deltaTime), (1 << 25) + (1 << 15), QueryTriggerInteraction.Ignore); //add bitshift in partenthesnes
+        if(hit.collider != null)
+        {
+            if(hit.collider.gameObject.tag == "damageable")
+            {
+            hit.collider.gameObject.GetComponent<damageScript>().bulletDamageCalc(damage);
+            damage = 0;
+            transform.position = hit.point;
+            Instantiate(hitExplosion,transform.position,Quaternion.identity);
+            Destroy(gameObject);
+            }
+        }
+        transform.position = newPos;
+    }
+    void FixedUpdate()
+    {
+        calculateBullet();
+    }
+    void Update()
+    {
+        if(Time.time - startTime > 3f)
+        {
+            Instantiate(explosion,transform.position,Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 }

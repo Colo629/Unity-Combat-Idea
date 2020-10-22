@@ -59,6 +59,7 @@ public class gunControlScript : MonoBehaviour
     public MechStatusHolder msh;
     public bool lockReload;
     public bool fullAuto;
+    public bool musket;
     public bool pump;
     public bool needPump;
     public AudioManager audioManager;
@@ -128,7 +129,7 @@ public class gunControlScript : MonoBehaviour
                     {
                         fireFullAutoProtocol();
                     }
-                    if(triggerPulled & !firstShot & !pump)
+                    if(triggerPulled & !firstShot & musket)
                     {
                         fireSingleShotProtocol();
                     }
@@ -145,6 +146,7 @@ public class gunControlScript : MonoBehaviour
                 {
                     reloadPumpProtocol();
                 }
+
             }
             if(switchToMelee.GetStateDown(rightHand2) == true)
             {
@@ -169,11 +171,11 @@ public class gunControlScript : MonoBehaviour
             }
             if(!switchToMeleeB)
             {
-                bayonettScript.activateSword = false;
+                //bayonettScript.activateSword = false;
             }
             if(switchToMeleeB & !destroyed)
             {
-                bayonettScript.activateSword = true;
+                //bayonettScript.activateSword = true;
             }
         }
     }
@@ -259,6 +261,15 @@ public class gunControlScript : MonoBehaviour
             float yValue = (leverL.output.y * multiplier);
             float xValue = (leverL.output.x * multiplier); //rotate\
             handleMovement2 = new Vector3(0,-0.1f,-zValue - 0.1f);
+            handleMovement2 = rotateRef.TransformPoint(handleMovement2);
+            reloaderGrip.position = handleMovement2;  
+        }
+        if(musket)
+        {
+            float zValue = (leverL.output.z * multiplier/100) - 1.5f; //push/pull
+            float yValue = (leverL.output.y * multiplier);
+            float xValue = (leverL.output.x * multiplier); //rotate\
+            handleMovement2 = new Vector3(-0.11f,-0.07f,-zValue + 1f);  //modify to get handle in place
             handleMovement2 = rotateRef.TransformPoint(handleMovement2);
             reloaderGrip.position = handleMovement2;  
         }

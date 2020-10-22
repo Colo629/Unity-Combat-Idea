@@ -15,7 +15,7 @@ public class aiBulletPusher : MonoBehaviour
     {
         worldVelocity = transform.forward * velocity;
         calculateBullet();
-        StartCoroutine(SelfDetonation());
+        Destroy(gameObject, 3f);
     }
 
     // Update is called once per frame
@@ -26,13 +26,15 @@ public class aiBulletPusher : MonoBehaviour
         Vector3 currentVelocity = worldVelocity + new Vector3(0,velocityY,0);
         Vector3 newPos = transform.position + (currentVelocity * Time.deltaTime);
         RaycastHit hit;
-        Physics.Raycast(transform.position, currentVelocity, out hit, currentVelocity.magnitude, (1 << 27) + (1 << 15), QueryTriggerInteraction.Ignore); //add bitshift in partenthesnes
+        Physics.Raycast(transform.position, currentVelocity, out hit, (currentVelocity.magnitude * Time.deltaTime), (1 << 27) + (1 << 15), QueryTriggerInteraction.Ignore); //add bitshift in partenthesnes
         if(hit.collider != null)
         {
             if(hit.collider.gameObject.tag == "damageable")
             {
                 hit.collider.gameObject.GetComponent<PlayerDamage>().DamageThis(damage);
+                damage = 0;
             }
+            transform.position = hit.point;
             Destroy(gameObject);
         }
         transform.position = newPos;
@@ -40,11 +42,5 @@ public class aiBulletPusher : MonoBehaviour
     void FixedUpdate()
     {
         calculateBullet();
-    }
-    IEnumerator SelfDetonation()
-    {
-    yield return new WaitForSeconds(3);
-    Destroy(gameObject);
-        
     }
 }

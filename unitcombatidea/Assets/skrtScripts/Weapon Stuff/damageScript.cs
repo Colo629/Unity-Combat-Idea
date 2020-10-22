@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class damageScript : MonoBehaviour
 {
-    public bulletDamage bulletDamage;
+    //public bulletDamage bulletDamage;
     public swordDamageScript swordDamage;
     public GameObject mechPart;
     public bool leftLeg;
@@ -32,11 +32,6 @@ public class damageScript : MonoBehaviour
     }
     public void OnTriggerEnter(Collider collisionData)
     {
-        if(collisionData.tag == "bullet")
-        {
-            bulletDamage = collisionData.gameObject.GetComponent<bulletDamage>();
-            bulletDamageCalc();
-        }
         if(collisionData.tag == "sword")
         {
             swordDamage = collisionData.gameObject.GetComponent<swordDamageScript>();
@@ -52,55 +47,54 @@ public class damageScript : MonoBehaviour
     }
     public void OnTriggerExit(Collider CollisionData)
     {
-        bulletDamage = null;
         swordDamage = null;
     }
     // Update is called once per frame
-    public void bulletDamageCalc()
+    public void bulletDamageCalc(float damage)
     {
         if(lla)
         {
-            em.leftLegArmorCount -= bulletDamage.bulletDam;
+            em.leftLegArmorCount -= damage;
         }
         if(rla)
         {
-            em.rightLegArmorCount -= bulletDamage.bulletDam;
+            em.rightLegArmorCount -= damage;
         }
         if(laa)
         {
-            em.leftArmArmorCount -= bulletDamage.bulletDam;
+            em.leftArmArmorCount -= damage;
         }
         if(raa)
         {
-            em.rightArmArmorCount -= bulletDamage.bulletDam;
+            em.rightArmArmorCount -= damage;
         }
         if(leftLeg)
         {
-            em.leftLegHp -= bulletDamage.bulletDam;
+            em.leftLegHp -= damage;
         }
         if(rightLeg)
         {
-            em.rightLegHp -= bulletDamage.bulletDam;
+            em.rightLegHp -= damage;
         }
         if(leftArm)
         {
-            em.leftArmHp -= bulletDamage.bulletDam;
+            em.leftArmHp -= damage;
         }
         if(rightArm)
         {
-            em.rightArmHp -= bulletDamage.bulletDam;
+            em.rightArmHp -= damage;
         }
         if(head)
         {
-            em.headHp -= bulletDamage.bulletDam;
+            em.headHp -= damage;
         }
         if(torso)
         {
-            em.torsoHp -= bulletDamage.bulletDam;
+            em.torsoHp -= damage;
         }
         if(gun)
         {
-            em.gunHp -= bulletDamage.bulletDam;
+            em.gunHp -= damage;
         }
     }
     public void stabDamageCalc()

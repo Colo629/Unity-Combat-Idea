@@ -7,7 +7,7 @@ public class RequipPod : MonoBehaviour
     public MechStatusHolder msh;
     public playerManager playerScript;
     public bool shotgunDrop;
-    public bool revoDrop;
+    public bool musketDrop;
     public bool autoCannonDrop;
     public bool oneUse;
     public leverLessEjection lLE;
@@ -62,9 +62,9 @@ public class RequipPod : MonoBehaviour
             msh.shotgun = true;
             msh.gunChange = true;
         }
-        if(revoDrop)
+        if(musketDrop)
         {
-            msh.revoRifle = true;
+            msh.musket = true;
             msh.gunChange = true;
         }
         if(autoCannonDrop)

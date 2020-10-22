@@ -49,8 +49,10 @@ public class MechStatusHolder : MonoBehaviour
     public GameObject shotgunR;
     public bool autoCannon;
     public GameObject autoCannonR;
-    public bool revoRifle;
+    public GameObject musketR;
+    public bool musket;
     public bool pump;
+    public bool fullAuto;
     public bool disabledLeftArm;
     public bool disabledRightArm;
     public bool disabledRightLeg;
@@ -75,6 +77,14 @@ public class MechStatusHolder : MonoBehaviour
         if(gcs.pump == true)
         {
             pump = true;
+        }
+        if(gcs.fullAuto == true)
+        {
+            autoCannon = true;
+        }
+        if(gcs.musket)
+        {
+            musket = true;
         }
     }
 
@@ -160,18 +170,28 @@ public class MechStatusHolder : MonoBehaviour
             equipedGun = shotgunR;
             pump = true;
             shotgun = false;
+            musket = false;
+            fullAuto = false;
+            autoCannon = false;
+            musket = false;
         }
-        /*if(revoRifle)
+        if(musket)
         {
-            revoRifleR.SetActive(true);
-            revoRifle = false;
-        }*/
+            musketR.SetActive(true);
+            equipedGun = musketR;
+            pump = false;
+            autoCannon = false;
+            fullAuto = false;
+            musket = true;
+        }
         if(autoCannon)
         {
             autoCannonR.SetActive(true);
             equipedGun = autoCannonR;
             pump = false;
-            autoCannon = false;
+            autoCannon = true;
+            musket = false;
+            fullAuto = true;
         }
         gcs = equipedGun.GetComponentInChildren<gunControlScript>();
         gcs.RefreshAmmoProtocol();

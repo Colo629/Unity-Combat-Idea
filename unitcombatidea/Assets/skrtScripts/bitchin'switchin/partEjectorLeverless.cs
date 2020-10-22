@@ -31,6 +31,7 @@ public class partEjectorLeverless : MonoBehaviour
                 Destroy(ejectedPart);
                 GameObject instEjectedPart = Instantiate(ejectedPart,transform.position,transform.rotation) as GameObject;
                 //ejectedPart.GetComponent<Rigidbody>()
+                Destroy(instEjectedPart,20f);
                 Rigidbody instEjectedRigidbody = instEjectedPart.GetComponent<Rigidbody>();
                 instEjectedRigidbody.isKinematic = false;
                 instEjectedRigidbody.AddForce(instEjectedPart.transform.forward * pushSpeed);          

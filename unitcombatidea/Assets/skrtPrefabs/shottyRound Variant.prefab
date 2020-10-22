@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 82284502739268480, guid: e5a146616ea6a10418cdb542624713c1,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 65c1ca3a58aceea409c90db8b9c2bbf9, type: 3}
     - target: {fileID: 82450110104508064, guid: e5a146616ea6a10418cdb542624713c1,
         type: 3}
       propertyPath: m_audioClip
@@ -21,6 +26,16 @@ PrefabInstance:
         type: 3}
       propertyPath: bulletDam
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504563864162160315, guid: e5a146616ea6a10418cdb542624713c1,
+        type: 3}
+      propertyPath: damage
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504563864162160315, guid: e5a146616ea6a10418cdb542624713c1,
+        type: 3}
+      propertyPath: velocity
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 5713733979498151197, guid: e5a146616ea6a10418cdb542624713c1,
         type: 3}
@@ -82,5 +97,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: shottyRound Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3232475950051243178, guid: e5a146616ea6a10418cdb542624713c1, type: 3}
+    - {fileID: 361004293164999365, guid: e5a146616ea6a10418cdb542624713c1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e5a146616ea6a10418cdb542624713c1, type: 3}

@@ -24,6 +24,7 @@ public bool one = true;
     public MechStatusHolder msh;
     public float dispersionValue;
     public float pellets;
+    public AudioManager audioManager;
 
     
     
@@ -36,14 +37,13 @@ public bool one = true;
     // Update is called once per frame
     public void fireGun()
     {         
-        if(msh.ammoCount > 0 & msh.pump == false)
+        if(msh.ammoCount > 0 & msh.fullAuto == true)
             {
                 Quaternion aimVector = Quaternion.RotateTowards(transform.rotation,Random.rotation,dispersionValue);
                 GameObject instBullet = Instantiate(bullet,transform.position,aimVector) as GameObject;
                 msh.ammoCount -= 1f;
                 Quaternion aimVector1 = Quaternion.RotateTowards(transform.rotation,Random.rotation,dispersionValue);
                 GameObject instBullet1 = Instantiate(bullet,transform.position,aimVector1) as GameObject;
-                
                 msh.ammoCount -= 1f;
             }
         if(msh.ammoCount > 0 & msh.pump == true)
@@ -51,8 +51,16 @@ public bool one = true;
             for(int i = 0; i < pellets ; i++)
             {
                 Quaternion aimVector = Quaternion.RotateTowards(transform.rotation,Random.rotation,dispersionValue);
-                GameObject instBullet = Instantiate(bullet,transform.position,aimVector) as GameObject;            }
+                GameObject instBullet = Instantiate(bullet,transform.position,aimVector) as GameObject;            
+            }
             msh.ammoCount -= 1f; 
+        }
+        if(msh.ammoCount > 0 & msh.musket == true)
+        {
+            Quaternion aimVector = Quaternion.RotateTowards(transform.rotation,Random.rotation,dispersionValue);
+            GameObject instBullet = Instantiate(bullet,transform.position,aimVector) as GameObject;  
+            msh.ammoCount -= 1f;
+            audioManager.Play("musketShot");
         }
     }
 }
